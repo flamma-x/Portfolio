@@ -1,4 +1,5 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { useNavigate } from 'react-router-dom';
 import './ProjectOverview.css';
 import Footer from './Footer';
@@ -10,7 +11,12 @@ import screenBooking     from '../assets/atria screens/BOOKING PAGE 1.png';
 import screenLoading     from '../assets/atria screens/loading screen 1.png';
 import screenTicket      from '../assets/atria screens/TICKET READY 1.png';
 
-const imgProjectCover = "http://localhost:3845/assets/76d5b39f49bee95733f729fbbf5f6124dcc55182.png";
+import carouselArtist     from '../assets/atria screens/carousel/Artist spotlight.png';
+import carouselBid        from '../assets/atria screens/carousel/Bid.png';
+import carouselFeatured   from '../assets/atria screens/carousel/Featured artists.png';
+import carouselExhibition from '../assets/atria screens/carousel/exhibions cards.png';
+
+const carouselImages = [carouselArtist, carouselBid, carouselFeatured, carouselExhibition];
 
 /* ─── SECTION HEADER ──────────────────────────────────── */
 const SectionHeader = ({ number, label, underlineColor }) => (
@@ -26,11 +32,11 @@ const SectionHeader = ({ number, label, underlineColor }) => (
 
 /* ─── PROCESS STEPS DATA ──────────────────────────────── */
 const steps = [
-  { dot: '#F65A89', name: 'EMPATHIZE', desc: 'User interviews · Competitive research',    num: '01', color: '#F65A89' },
-  { dot: '#FF6634', name: 'DEFINE',    desc: 'Personas · Problem statement · HMW',        num: '02', color: '#FF6634' },
-  { dot: '#FFC548', name: 'IDEATE',    desc: 'Sketches · User flows · IA',                num: '03', color: '#FFC548' },
-  { dot: '#44C9E8', name: 'PROTOTYPE', desc: 'Wireframes · Hi-fi screens · Design system', num: '04', color: '#44C9E8' },
-  { dot: '#42477E', name: 'TEST',      desc: 'Usability testing · Iterations',             num: '05', color: '#42477E' },
+  { dot: '#F65A89', name: 'EMPATHIZE', desc: '6 user interviews revealed collectors have no single place to discover, buy, and track art.',           num: '01', color: '#F65A89' },
+  { dot: '#FF6634', name: 'DEFINE',    desc: 'POV: art buyers need a unified discovery + purchase experience, not 3 separate apps.',                  num: '02', color: '#FF6634' },
+  { dot: '#FFC548', name: 'IDEATE',    desc: 'Chose live bidding as the differentiator — no competitor had it on mobile.',                            num: '03', color: '#FFC548' },
+  { dot: '#44C9E8', name: 'PROTOTYPE', desc: 'Dark navy system chosen for gallery feel — contrast tested to WCAG AA.',                                num: '04', color: '#44C9E8' },
+  { dot: '#42477E', name: 'TEST',      desc: '13 participants. Iterated nav labels after 8/13 missed the bidding tab on first pass.',                  num: '05', color: '#42477E' },
 ];
 
 /* ─── SCREEN IMAGES ───────────────────────────────────── */
@@ -42,6 +48,14 @@ const screenImages = [
 function ProjectOverview() {
   const navigate = useNavigate();
   const [lightboxIdx, setLightboxIdx] = useState(null);
+  const [carouselIdx, setCarouselIdx] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCarouselIdx(i => (i + 1) % carouselImages.length);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, []);
 
   const scrollRef = useRef(null);
   const isDragging = useRef(false);
@@ -72,7 +86,7 @@ function ProjectOverview() {
       <nav className="po-nav">
         <div className="po-nav-main">
           <button className="po-back-btn" onClick={() => navigate('/')}>
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="15" viewBox="0 0 32 15" fill="none">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="10" viewBox="0 0 32 15" fill="none">
               <path d="M31 8.36395C31.5523 8.36395 32 7.91624 32 7.36395C32 6.81167 31.5523 6.36395 31 6.36395L31 7.36395L31 8.36395ZM0.29289 6.65685C-0.0976334 7.04737 -0.0976333 7.68054 0.292891 8.07106L6.65685 14.435C7.04738 14.8255 7.68054 14.8255 8.07107 14.435C8.46159 14.0445 8.46159 13.4113 8.07107 13.0208L2.41421 7.36396L8.07107 1.7071C8.46159 1.31658 8.46159 0.683411 8.07107 0.292887C7.68054 -0.0976375 7.04738 -0.0976375 6.65685 0.292887L0.29289 6.65685ZM31 7.36395L31 6.36395L0.999998 6.36396L0.999998 7.36396L0.999998 8.36396L31 8.36395L31 7.36395Z" fill="#42477E"/>
             </svg>
           </button>
@@ -92,18 +106,6 @@ function ProjectOverview() {
         <p className="po-tagline">art gallery, live bidding &amp; social</p>
       </section>
 
-      {/* ── Cover Card ── */}
-      <div
-        className="po-cover-card"
-        style={{ backgroundImage: `url(${imgProjectCover})` }}
-      >
-        <div className="po-cover-overlay" />
-        <div className="po-cover-content">
-          <div className="po-cover-title">Atria</div>
-          <div className="po-cover-sub">Mobile App</div>
-        </div>
-      </div>
-
       {/* ── Meta Grid ── */}
       <div className="po-meta-grid">
         <div className="po-meta-box" style={{ border: '1px solid #F65A89' }}>
@@ -121,6 +123,20 @@ function ProjectOverview() {
         <div className="po-meta-box" style={{ border: '1px solid #FF6634' }}>
           <div className="po-meta-label">PLATFORM</div>
           <div className="po-meta-value">Mobile App</div>
+        </div>
+      </div>
+
+      {/* ── Carousel ── */}
+      <div className="po-carousel">
+        <div className="po-carousel-track" style={{ transform: `translateX(-${carouselIdx * 100}%)` }}>
+          {carouselImages.map((img, i) => (
+            <img key={i} src={img} alt={`Atria screen ${i + 1}`} className="po-carousel-img" />
+          ))}
+        </div>
+        <div className="po-carousel-dots">
+          {carouselImages.map((_, i) => (
+            <button key={i} className={`po-carousel-dot ${i === carouselIdx ? 'active' : ''}`} onClick={() => setCarouselIdx(i)} />
+          ))}
         </div>
       </div>
 
@@ -192,28 +208,33 @@ function ProjectOverview() {
         <SectionHeader number="05" label="OUTCOME" color="#42477E" underlineColor="#42477E" />
         <div className="po-outcome-box">
           <p className="po-body-text" style={{ marginTop: 0 }}>
-            Delivered a complete hi-fi screen set covering the full user journey — onboarding,
-            exhibition booking, live bidding, and artist profiles. Established a dark navy
-            design system.
+            Full hi-fi shipped across 8 screens. 85% usability success rate. Navigation iterated 2× based on test findings.
+            <br /><br />
+            <strong>What I'd do differently</strong><br />
+            Test the IA earlier — nav confusion caught late.<br />
+            Add an artist onboarding flow in v2.<br />
+            Explore accessibility contrast for dark palette.
           </p>
         </div>
       </section>
 
       {/* ── Next Project ── */}
-      <div className="po-grad-wrap po-next-wrap">
-        <div className="po-next-card">
-          <div>
-            <div className="po-next-label">NEXT PROJECT</div>
-            <div className="po-next-title">DEAL.IO</div>
+      <section className="po-section">
+        <div className="po-grad-wrap po-next-wrap">
+          <div className="po-next-card">
+            <div>
+              <div className="po-next-label">NEXT PROJECT</div>
+              <div className="po-next-title">LINKER</div>
+            </div>
+            <span className="po-next-arrow">→</span>
           </div>
-          <span className="po-next-arrow">→</span>
         </div>
-      </div>
+      </section>
 
       <Footer />
 
       {/* ── Lightbox ── */}
-      {lightboxIdx !== null && (
+      {lightboxIdx !== null && createPortal(
         <div className="po-lightbox" onClick={closeLightbox}>
           <button className="po-lightbox-prev" onClick={goPrev}>‹</button>
           <img
@@ -224,7 +245,8 @@ function ProjectOverview() {
           />
           <button className="po-lightbox-next" onClick={goNext}>›</button>
           <button className="po-lightbox-close" onClick={closeLightbox}>✕</button>
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   );

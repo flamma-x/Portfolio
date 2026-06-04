@@ -3,16 +3,14 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  height: 125px;
+  height: 70px;
   background: #fff;
   padding: 0 20px;
 }
 
 .po-nav-main {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  right: 20px;
+  height: 100%;
+  padding: 0 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -98,6 +96,52 @@
 .po-tag-pink   { background: rgba(246,90,137,0.2);  border-color: #F65A89; color: #F65A89; }
 .po-tag-cyan   { background: rgba(68,201,232,0.2);  border-color: #44C9E8; color: #44C9E8; }
 .po-tag-orange { background: rgba(255,102,52,0.2);  border-color: #FF6634; color: #FF6634; }
+
+/* ─── CAROUSEL ────────────────────────────────────────── */
+.po-carousel {
+  position: relative;
+  width: calc(100% - 50px);
+  max-width: 900px;
+  margin: 20px auto 0;
+  overflow: hidden;
+}
+
+.po-carousel-track {
+  display: flex;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.po-carousel-img {
+  width: 100%;
+  flex-shrink: 0;
+  object-fit: contain;
+  display: block;
+}
+
+.po-carousel-dots {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+}
+
+.po-carousel-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255,255,255,0.5);
+  padding: 0;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.po-carousel-dot.active {
+  background: #fff;
+  transform: scale(1.3);
+}
 
 /* ─── COVER CARD ──────────────────────────────────────── */
 .po-cover-card {
@@ -263,8 +307,8 @@
   background: #FAFAFA;
   border: 0.667px solid #F0F0F0;
   border-radius: 10px;
-  height: 52px;
-  padding: 0 14px;
+  min-height: 52px;
+  padding: 10px 14px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -337,9 +381,8 @@
 
 /* ─── OUTCOME BOX ─────────────────────────────────────── */
 .po-outcome-box {
-  margin: 14px auto 0;
-  width: calc(100% - 46px);
-  max-width: 355px;
+  margin-top: 14px;
+  width: 100%;
   border-radius: 10px;
   background: rgba(66, 71, 126, 0.05);
   border: 0.667px solid #42477E;
@@ -359,10 +402,10 @@
 }
 
 .po-lightbox-img {
-  height: 100svh;
-  max-height: 100svh;
+  max-height: 90vh;
+  max-width: 90vw;
   width: auto;
-  max-width: 402px;
+  height: auto;
   object-fit: contain;
   border-radius: 20px;
   box-shadow: 0 24px 60px rgba(0,0,0,0.6);
@@ -415,11 +458,68 @@
 .po-lightbox-prev:active { transform: translateY(-50%) scale(0.85); background: rgba(255,255,255,0.22); }
 .po-lightbox-next:active { transform: translateY(-50%) scale(0.85); background: rgba(255,255,255,0.22); }
 
+/* ─── DESKTOP ─────────────────────────────────────────── */
+@media (min-width: 768px) {
+  .po-hero {
+    padding: 40px 60px 0;
+  }
+
+  .po-title { font-size: 56px; }
+
+  .po-cover-card {
+    width: calc(100% - 120px);
+    max-width: 900px;
+    height: 320px;
+    margin: 28px auto 0;
+  }
+
+  .po-carousel {
+    max-width: 480px;
+  }
+
+  .po-meta-grid {
+    grid-template-columns: repeat(4, 1fr);
+    padding: 0 60px;
+    max-width: 100%;
+  }
+
+  .po-section {
+    padding: 0 60px;
+  }
+
+  .po-section-screens {
+    padding-left: 60px;
+  }
+
+  .po-process-steps {
+    max-width: 100%;
+  }
+
+  .po-screen-img {
+    width: 200px;
+    height: 434px;
+  }
+
+  .po-screens-scroll {
+    padding-right: 60px;
+  }
+
+  .po-outcome-box {
+    width: calc(100% - 120px);
+    max-width: 100%;
+  }
+
+  .po-next-wrap {
+    width: calc(100% - 120px);
+    max-width: 100%;
+    margin: 28px auto 60px;
+  }
+}
+
 /* ─── NEXT PROJECT CARD ───────────────────────────────── */
 .po-next-wrap {
-  width: calc(100% - 32px);
-  max-width: 370px;
-  margin: 28px auto 40px;
+  width: 100%;
+  margin: 28px 0 40px;
   transition: transform 0.15s;
   background: conic-gradient(from var(--angle), #F65A89, #FF6634, #FFC548, #44C9E8, #42477E, #F65A89);
   animation: spin-border 2.5s linear infinite;
