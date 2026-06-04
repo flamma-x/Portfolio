@@ -197,9 +197,12 @@
   transition: background 0.2s, color 0.2s;
 }
 
-.ct-submit:active {
+.ct-submit-wrap {
+  transition: transform 0.15s;
+}
+
+.ct-submit-wrap:active {
   transform: scale(0.98);
-  opacity: 0.9;
 }
 
 .ct-submit:disabled {

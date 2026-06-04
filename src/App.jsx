@@ -14,7 +14,7 @@ import Contact from './components/Contact';
 function HomePage() {
   return (
     <div className="page-anim">
-      <Navbar />
+      <Navbar className="mobile-only-nav" />
       <Hero />
       <RecentWork />
       <Services />
@@ -28,6 +28,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="app-wrapper">
+        <Navbar className="desktop-only-nav" />
         <Routes>
           <Route path="/"              element={<HomePage />} />
           <Route path="/project/atria" element={<ProjectOverview />} />

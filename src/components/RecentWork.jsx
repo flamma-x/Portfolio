@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import atriaImg from '../assets/il_fullxfull.5263316982_pkfn.avif';
+import linkerImg from '../assets/Linker/Frame 8.png';
 
 function RecentWork() {
   return (
@@ -11,7 +12,7 @@ function RecentWork() {
 
       <div className="rw-cards">
         {/* Atria — navigates to case study */}
-        <Link to="/project/atria" style={{ textDecoration: 'none', width: '100%', maxWidth: '350px' }}>
+        <Link to="/project/atria" className="rw-card-link">
           <div
             className="rw-card"
             style={{
@@ -28,11 +29,10 @@ function RecentWork() {
           </div>
         </Link>
 
-        {/* Deal.io */}
-        <div className="rw-card rw-card-deal">
-          <div className="rw-card-content">
-            <div className="rw-title-deal">deal<img src="/smiley.png" alt="." style={{ width: 22, height: 22, verticalAlign: '-6px' }} />io</div>
-            <div className="rw-card-sub">Mobile App</div>
+        {/* Linker */}
+        <div className="rw-card-link">
+          <div className="rw-card rw-card-deal">
+            <img src={linkerImg} alt="Linker" style={{ width: 250, height: 'auto' }} />
           </div>
         </div>
       </div>
