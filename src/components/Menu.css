@@ -1,0 +1,136 @@
+/* ─── WRAPPER ─────────────────────────────────────────── */
+.menu-wrapper {
+  background: #fff;
+  min-height: 100vh;
+}
+
+/* ─── NAVBAR ──────────────────────────────────────────── */
+.menu-nav {
+  height: 80px;
+  background: #fff;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* X close button */
+.menu-close-btn {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  background: none;
+  border: none;
+  padding: 0;
+  flex-shrink: 0;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.menu-close-btn:active {
+  transform: scale(0.85);
+  opacity: 0.7;
+}
+
+.menu-close-btn.exit {
+  transform: rotate(-90deg) scale(0.4);
+  opacity: 0;
+}
+
+.menu-close-line {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 27px;
+  height: 3px;
+  border-radius: 99px;
+  transform-origin: center;
+  translate: -50% -50%;
+}
+
+.menu-close-line-1 {
+  background: #42477E;
+  rotate: 45deg;
+}
+
+.menu-close-line-2 {
+  background: #F65A89;
+  rotate: -45deg;
+}
+
+/* Hamburger (right side) */
+.menu-hamburger {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.menu-ham-line {
+  height: 3px;
+  border-radius: 99px;
+  display: block;
+}
+
+/* ─── CONTENT ─────────────────────────────────────────── */
+.menu-content {
+  min-height: calc(100vh - 80px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 55px;
+}
+
+/* ── Shared nav item ── */
+.menu-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  background: none;
+  border: none;
+  padding: 0;
+  text-decoration: none;
+  transition: transform 0.15s;
+}
+
+.menu-nav-item:active {
+  transform: scale(0.94);
+}
+
+.menu-nav-text {
+  font-family: 'Jersey 25', serif;
+  font-size: 24px;
+  color: rgba(0, 0, 0, 0.5);
+  line-height: 1;
+  transition: font-size 0.3s cubic-bezier(0.22,1,0.36,1), color 0.3s;
+}
+
+.menu-nav-line {
+  width: 169px;
+  height: 3px;
+  border-radius: 99px;
+  opacity: 0;
+  transform: scaleX(0.4);
+  transition: opacity 0.3s, transform 0.3s cubic-bezier(0.22,1,0.36,1);
+}
+
+/* Staggered entrance */
+.stagger-1 { animation: pageEnter 0.4s 0.08s cubic-bezier(0.22,1,0.36,1) both; }
+.stagger-2 { animation: pageEnter 0.4s 0.18s cubic-bezier(0.22,1,0.36,1) both; }
+.stagger-3 { animation: pageEnter 0.4s 0.28s cubic-bezier(0.22,1,0.36,1) both; }
+
+@keyframes pageEnter {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Active — big, full color, underline visible */
+.menu-nav-item.active .menu-nav-text {
+  font-size: 36px;
+  color: #1a1a1a;
+}
+
+.menu-nav-item.active .menu-nav-line {
+  opacity: 1;
+  transform: scaleX(1);
+}
