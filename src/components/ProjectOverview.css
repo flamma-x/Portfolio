@@ -107,6 +107,7 @@
 
 .po-carousel-track {
   display: flex;
+  align-items: flex-start;
   will-change: transform;
 }
 
