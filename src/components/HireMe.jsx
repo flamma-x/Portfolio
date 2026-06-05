@@ -101,13 +101,13 @@ function HireMe() {
   };
 
   return (
-    <div className="page-anim">
+    <div>
       {/* ── Navbar ── */}
       <nav className="hm-nav">
         <div className="hm-nav-main">
-          <button className="hm-back-btn" onClick={() => navigate('/')}>
-            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="10" viewBox="0 0 32 15" fill="none">
-              <path d="M31 8.36395C31.5523 8.36395 32 7.91624 32 7.36395C32 6.81167 31.5523 6.36395 31 6.36395L31 7.36395L31 8.36395ZM0.29289 6.65685C-0.0976334 7.04737 -0.0976333 7.68054 0.292891 8.07106L6.65685 14.435C7.04738 14.8255 7.68054 14.8255 8.07107 14.435C8.46159 14.0445 8.46159 13.4113 8.07107 13.0208L2.41421 7.36396L8.07107 1.7071C8.46159 1.31658 8.46159 0.683411 8.07107 0.292887C7.68054 -0.0976375 7.04738 -0.0976375 6.65685 0.292887L0.29289 6.65685ZM31 7.36395L31 6.36395L0.999998 6.36396L0.999998 7.36396L0.999998 8.36396L31 8.36395L31 7.36395Z" fill="#42477E"/>
+          <button className="hm-back-btn" onClick={() => navigate(-1)}>
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0 12H2V10H14V8H10V6H16V4H8V8H0V12ZM6 20H8V18H12V16H8V14H12V12H2V14H6V20ZM8 22H18V20H8V22ZM18 20H20V18H18V20ZM20 18H22V10H20V18ZM16 8H18V6H16V8ZM18 10H20V8H18V10Z" fill="#42477E"/>
             </svg>
           </button>
           <button className="hm-hamburger" style={{ background: 'none', border: 'none', padding: 0 }} onClick={() => navigate('/menu')}>

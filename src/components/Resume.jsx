@@ -87,13 +87,13 @@ function Resume() {
   };
 
   return (
-    <div className="page-anim rv-page">
+    <div className="rv-page">
       {/* Mobile nav */}
       <nav className="rv-nav">
         <div className="rv-nav-main">
           <button className="rv-back-btn" onClick={() => navigate('/')}>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#42477E" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M19 12H5M5 12l6-6M5 12l6 6"/>
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0 12H2V10H14V8H10V6H16V4H8V8H0V12ZM6 20H8V18H12V16H8V14H12V12H2V14H6V20ZM8 22H18V20H8V22ZM18 20H20V18H18V20ZM20 18H22V10H20V18ZM16 8H18V6H16V8ZM18 10H20V8H18V10Z" fill="#42477E"/>
             </svg>
           </button>
           <button className="rv-hamburger" style={{ background: 'none', border: 'none', padding: 0 }} onClick={() => navigate('/menu')}>

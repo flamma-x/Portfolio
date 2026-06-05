@@ -9,7 +9,7 @@ function Menu() {
 
   const handleClose = () => {
     setClosing(true);
-    setTimeout(() => navigate('/'), 260);
+    setTimeout(() => navigate(-1), 260);
   };
 
   const handleNav = (item, action) => {
@@ -18,7 +18,7 @@ function Menu() {
   };
 
   return (
-    <div className="menu-wrapper page-anim">
+    <div className="menu-wrapper">
       {/* ── Navbar ── */}
       <nav className="menu-nav">
         <button className={`menu-close-btn ${closing ? 'exit' : ''}`} onClick={handleClose}>
@@ -26,7 +26,7 @@ function Menu() {
           <div className="menu-close-line menu-close-line-2" />
         </button>
 
-        <div className="menu-hamburger">
+        <div className="menu-hamburger" onClick={handleClose} style={{ cursor: 'pointer' }}>
           <span className="menu-ham-line" style={{ width: 30, background: '#42477E' }} />
           <span className="menu-ham-line" style={{ width: 22, background: '#FF6634', marginLeft: 8 }} />
           <span className="menu-ham-line" style={{ width: 30, background: '#F65A89' }} />

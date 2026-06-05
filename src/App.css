@@ -24,14 +24,16 @@
   font-style: normal;
 }
 
-/* ─── PAGE ENTER ANIMATION ────────────────────────────── */
+/* ─── PAGE TRANSITION CONTAINER ──────────────────────── */
+.page-transition-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Legacy — keep but don't apply to pages; handled by Framer Motion */
 @keyframes pageEnter {
   from { opacity: 0; transform: translateY(22px); }
   to   { opacity: 1; transform: translateY(0); }
-}
-
-.page-anim {
-  animation: pageEnter 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 :root {
@@ -68,7 +70,7 @@
   z-index: 100;
   height: 70px;
   background: #fff;
-  padding: 0 14px;
+  padding: 0 8px 0 14px;
 }
 
 .status-bar {
@@ -198,7 +200,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.15s;
+  transition: transform 0.15s, width 0.25s ease, height 0.25s ease;
+}
+
+.btn-hire--easter {
+  width: 60px;
+  height: 60px;
 }
 
 .btn-hire-wrapper:active {
