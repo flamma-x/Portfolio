@@ -5,11 +5,15 @@ import './Menu.css';
 function Menu() {
   const navigate = useNavigate();
   const [active, setActive] = useState('recent');
-  const [closing, setClosing] = useState(false);
+  const [closingX, setClosingX] = useState(false);
 
-  const handleClose = () => {
-    setClosing(true);
+  const handleCloseX = () => {
+    setClosingX(true);
     setTimeout(() => navigate(-1), 260);
+  };
+
+  const handleCloseHamburger = () => {
+    setTimeout(() => navigate(-1), 180);
   };
 
   const handleNav = (item, action) => {
@@ -21,17 +25,17 @@ function Menu() {
     <div className="menu-wrapper">
       {/* ── Navbar ── */}
       <nav className="menu-nav">
-        <button className={`menu-close-btn ${closing ? 'exit' : ''}`} onClick={handleClose}>
+        <button className={`menu-close-btn ${closingX ? 'exit' : ''}`} onClick={handleCloseX}>
           <div className="menu-close-line menu-close-line-1" />
           <div className="menu-close-line menu-close-line-2" />
         </button>
 
-        <div className="menu-hamburger" onClick={handleClose} style={{ cursor: 'pointer' }}>
+        <button className="menu-hamburger" onClick={handleCloseHamburger}>
           <span className="menu-ham-line" style={{ width: 30, background: '#42477E' }} />
           <span className="menu-ham-line" style={{ width: 22, background: '#FF6634', marginLeft: 8 }} />
           <span className="menu-ham-line" style={{ width: 30, background: '#F65A89' }} />
           <span className="menu-ham-line" style={{ width: 14, background: '#44C9E8', marginLeft: 16 }} />
-        </div>
+        </button>
       </nav>
 
       {/* ── Menu Items ── */}
