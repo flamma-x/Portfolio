@@ -301,6 +301,7 @@
 
 .po-process-track {
   display: flex;
+  gap: 16px;
   will-change: transform;
 }
 

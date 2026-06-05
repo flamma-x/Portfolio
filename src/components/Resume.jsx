@@ -1,3 +1,4 @@
+import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Footer from './Footer';
 import './Resume.css';
@@ -49,6 +50,42 @@ function SectionHeader({ number, label, color }) {
 function Resume() {
   const navigate = useNavigate();
 
+  const [expIdx, setExpIdx] = useState(0);
+  const [expDrag, setExpDrag] = useState(0);
+  const [expCardWidth, setExpCardWidth] = useState(0);
+  const expWrapRef = useRef(null);
+  const expDragStart = useRef(0);
+  const expDragging = useRef(false);
+
+  useEffect(() => {
+    const measure = () => {
+      if (expWrapRef.current) setExpCardWidth(expWrapRef.current.offsetWidth);
+    };
+    measure();
+    window.addEventListener('resize', measure);
+    return () => window.removeEventListener('resize', measure);
+  }, []);
+
+  const goExpPrev = () => setExpIdx(i => (i - 1 + experience.length) % experience.length);
+  const goExpNext = () => setExpIdx(i => (i + 1) % experience.length);
+
+  const onExpTouchStart = (e) => {
+    expDragStart.current = e.touches[0].clientX;
+    expDragging.current = true;
+  };
+  const onExpTouchMove = (e) => {
+    if (!expDragging.current) return;
+    setExpDrag(e.touches[0].clientX - expDragStart.current);
+  };
+  const onExpTouchEnd = (e) => {
+    if (!expDragging.current) return;
+    expDragging.current = false;
+    const diff = e.changedTouches[0].clientX - expDragStart.current;
+    if (diff < -50) goExpNext();
+    else if (diff > 50) goExpPrev();
+    setExpDrag(0);
+  };
+
   return (
     <div className="page-anim rv-page">
       {/* Mobile nav */}
@@ -88,19 +125,46 @@ function Resume() {
       {/* Experience */}
       <section className="rv-section">
         <SectionHeader number="02" label="EXPERIENCE" color="#F65A89" />
-        <div className="rv-exp-list">
-          {experience.map((e, i) => (
-            <div key={i} className="rv-step-row">
-              <div className="rv-step-left">
-                <div className="rv-step-dot" style={{ background: e.color }} />
-                <div className="rv-step-info">
-                  <p className="rv-step-name">{e.role}</p>
-                  <p className="rv-step-desc">{e.company} · {e.location} · {e.period}</p>
-                </div>
+        <div
+          ref={expWrapRef}
+          className="rv-exp-track-wrap"
+          onTouchStart={onExpTouchStart}
+          onTouchMove={onExpTouchMove}
+          onTouchEnd={onExpTouchEnd}
+        >
+          <div
+            className="rv-exp-track"
+            style={{
+              transform: `translateX(${-(expIdx * (expCardWidth + 16)) + expDrag}px)`,
+              transition: expDragging.current ? 'none' : 'transform 0.35s cubic-bezier(0.22,1,0.36,1)',
+            }}
+          >
+            {experience.map((e, i) => (
+              <div
+                key={i}
+                className="rv-exp-card"
+                style={{ width: expCardWidth || '100%', borderColor: e.color }}
+              >
+                <div className="rv-exp-card-num" style={{ color: e.color }}>{String(i + 1).padStart(2, '0')}</div>
+                <div className="rv-exp-card-name">{e.role}</div>
+                <div className="rv-exp-card-desc">{e.company} · {e.location} · {e.period}</div>
               </div>
-              <span className="rv-step-num" style={{ color: e.color }}>{String(i + 1).padStart(2, '0')}</span>
-            </div>
-          ))}
+            ))}
+          </div>
+        </div>
+        <div className="rv-exp-nav">
+          <button className="rv-exp-arrow" onClick={goExpPrev}>‹</button>
+          <div className="rv-exp-dots">
+            {experience.map((exp, i) => (
+              <button
+                key={i}
+                className={`rv-exp-dot ${i === expIdx ? 'active' : ''}`}
+                style={i === expIdx ? { background: exp.color } : {}}
+                onClick={() => setExpIdx(i)}
+              />
+            ))}
+          </div>
+          <button className="rv-exp-arrow" onClick={goExpNext}>›</button>
         </div>
       </section>
 

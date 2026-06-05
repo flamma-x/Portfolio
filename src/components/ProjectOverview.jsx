@@ -206,7 +206,7 @@ function ProjectOverview() {
           <div
             className="po-process-track"
             style={{
-              transform: `translateX(${-(processIdx * processCardWidth) + processDrag}px)`,
+              transform: `translateX(${-(processIdx * (processCardWidth + 16)) + processDrag}px)`,
               transition: processDragging.current ? 'none' : 'transform 0.35s cubic-bezier(0.22,1,0.36,1)',
             }}
           >
