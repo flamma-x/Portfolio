@@ -46,7 +46,7 @@
 
 .pid-info {
   flex: 1;
-  padding: 12px 10px 12px 0;
+  padding: 12px 10px 12px 10px;
   display: flex;
   flex-direction: column;
   gap: 4px;
