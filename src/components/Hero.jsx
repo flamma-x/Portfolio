@@ -21,11 +21,11 @@ function Hero() {
       </h1>
 
 
-      <div style={{ marginTop: 24, display: 'flex', justifyContent: 'center' }}>
+      <div style={{ marginTop: 25, display: 'flex', justifyContent: 'center' }}>
         <PortfolioID />
       </div>
 
-      <div className="hero-buttons">
+      <div className="hero-buttons" style={{ marginTop: 25 }}>
         <div className="btn-hire-wrapper">
           <button className="btn-hire" onClick={() => navigate('/contact')}>
             <img src={pixelFace} alt="" style={{ width: 24, height: 24, marginRight: 8, verticalAlign: 'middle', marginBottom: 2 }} />
