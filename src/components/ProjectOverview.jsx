@@ -49,6 +49,11 @@ function ProjectOverview() {
   const navigate = useNavigate();
   const [lightboxIdx, setLightboxIdx] = useState(null);
   const [carouselIdx, setCarouselIdx] = useState(0);
+  const [carouselDrag, setCarouselDrag] = useState(0);
+  const [carouselCardWidth, setCarouselCardWidth] = useState(0);
+  const carouselWrapRef = useRef(null);
+  const carouselDragStart = useRef(0);
+  const carouselDragging = useRef(false);
   const [processIdx, setProcessIdx] = useState(0);
   const [processDrag, setProcessDrag] = useState(0);
   const [processCardWidth, setProcessCardWidth] = useState(0);
@@ -59,11 +64,29 @@ function ProjectOverview() {
   useEffect(() => {
     const measure = () => {
       if (processWrapRef.current) setProcessCardWidth(processWrapRef.current.offsetWidth);
+      if (carouselWrapRef.current) setCarouselCardWidth(carouselWrapRef.current.offsetWidth);
     };
     measure();
     window.addEventListener('resize', measure);
     return () => window.removeEventListener('resize', measure);
   }, []);
+
+  const onCarouselTouchStart = (e) => {
+    carouselDragStart.current = e.touches[0].clientX;
+    carouselDragging.current = true;
+  };
+  const onCarouselTouchMove = (e) => {
+    if (!carouselDragging.current) return;
+    setCarouselDrag(e.touches[0].clientX - carouselDragStart.current);
+  };
+  const onCarouselTouchEnd = (e) => {
+    if (!carouselDragging.current) return;
+    carouselDragging.current = false;
+    const diff = e.changedTouches[0].clientX - carouselDragStart.current;
+    if (diff < -50) setCarouselIdx(i => (i + 1) % carouselImages.length);
+    else if (diff > 50) setCarouselIdx(i => (i - 1 + carouselImages.length) % carouselImages.length);
+    setCarouselDrag(0);
+  };
 
   const goProcessPrev = () => setProcessIdx(i => (i - 1 + steps.length) % steps.length);
   const goProcessNext = () => setProcessIdx(i => (i + 1) % steps.length);
@@ -164,17 +187,33 @@ function ProjectOverview() {
       </div>
 
       {/* ── Carousel ── */}
-      <div className="po-carousel">
-        <div className="po-carousel-track" style={{ transform: `translateX(-${carouselIdx * 100}%)` }}>
+      <div
+        ref={carouselWrapRef}
+        className="po-carousel"
+        onTouchStart={onCarouselTouchStart}
+        onTouchMove={onCarouselTouchMove}
+        onTouchEnd={onCarouselTouchEnd}
+      >
+        <div
+          className="po-carousel-track"
+          style={{
+            transform: `translateX(${-(carouselIdx * carouselCardWidth) + carouselDrag}px)`,
+            transition: carouselDragging.current ? 'none' : 'transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)',
+          }}
+        >
           {carouselImages.map((img, i) => (
-            <img key={i} src={img} alt={`Atria screen ${i + 1}`} className="po-carousel-img" />
+            <img key={i} src={img} alt={`Atria screen ${i + 1}`} className="po-carousel-img" style={{ width: carouselCardWidth || '100%' }} />
           ))}
         </div>
+      </div>
+      <div className="po-carousel-nav">
+        <button className="po-process-arrow" onClick={() => setCarouselIdx(i => (i - 1 + carouselImages.length) % carouselImages.length)}>‹</button>
         <div className="po-carousel-dots">
           {carouselImages.map((_, i) => (
             <button key={i} className={`po-carousel-dot ${i === carouselIdx ? 'active' : ''}`} onClick={() => setCarouselIdx(i)} />
           ))}
         </div>
+        <button className="po-process-arrow" onClick={() => setCarouselIdx(i => (i + 1) % carouselImages.length)}>›</button>
       </div>
 
       {/* ── Section 01 — Overview ── */}

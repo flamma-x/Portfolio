@@ -123,7 +123,8 @@
 /* ── Experience Carousel ── */
 .rv-exp-track-wrap {
   overflow: hidden;
-  margin-top: 14px;
+  margin: 14px -25px 0;
+  width: calc(100% + 50px);
   touch-action: pan-y;
 }
 
