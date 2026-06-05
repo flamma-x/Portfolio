@@ -105,114 +105,119 @@ function Resume() {
         </div>
       </nav>
 
-      {/* Hero */}
-      <section className="rv-hero">
-        <h1 className="rv-name">Tarek Daher</h1>
-        <p className="rv-role">UI/UX Designer &amp; Builder</p>
-        <div className="rv-contact">
-          <span>📍 Beirut</span>
-          <span>📞 +961 81 021 098</span>
-          <span>✉️ tarekdaher3@gmail.com</span>
-        </div>
-      </section>
+      {/* Desktop 2-column grid — all content except nav and footer */}
+      <div className="rv-desktop-grid">
 
-      {/* Summary */}
-      <section className="rv-section">
-        <SectionHeader number="01" label="SUMMARY" color="#42477E" />
-        <p className="rv-body">Operations and Production Coordinator turned UI/UX Designer. Extensive experience across logistics, marketing, contracting, and media production — now channeling that into building digital products that feel as good as they look.</p>
-      </section>
+        {/* Hero — left column on desktop */}
+        <section className="rv-hero rv-hero-sec">
+          <h1 className="rv-name">Tarek Daher</h1>
+          <p className="rv-role">UI/UX Designer &amp; Builder</p>
+          <div className="rv-contact">
+            <span>📍 Beirut</span>
+            <span>📞 +961 81 021 098</span>
+            <span>✉️ tarekdaher3@gmail.com</span>
+          </div>
+        </section>
 
-      {/* Experience */}
-      <section className="rv-section">
-        <SectionHeader number="02" label="EXPERIENCE" color="#F65A89" />
-        <div
-          ref={expWrapRef}
-          className="rv-exp-track-wrap"
-          onTouchStart={onExpTouchStart}
-          onTouchMove={onExpTouchMove}
-          onTouchEnd={onExpTouchEnd}
-        >
+        {/* Summary — right column on desktop */}
+        <section className="rv-section rv-summary-sec">
+          <SectionHeader number="01" label="SUMMARY" color="#42477E" />
+          <p className="rv-body">Operations and Production Coordinator turned UI/UX Designer. Extensive experience across logistics, marketing, contracting, and media production — now channeling that into building digital products that feel as good as they look.</p>
+        </section>
+
+        {/* Experience — right column on desktop */}
+        <section className="rv-section rv-exp-sec">
+          <SectionHeader number="02" label="EXPERIENCE" color="#F65A89" />
           <div
-            className="rv-exp-track"
-            style={{
-              transform: `translateX(${-(expIdx * (expCardWidth + 16)) + expDrag}px)`,
-              transition: expDragging.current ? 'none' : 'transform 0.35s cubic-bezier(0.22,1,0.36,1)',
-            }}
+            ref={expWrapRef}
+            className="rv-exp-track-wrap"
+            onTouchStart={onExpTouchStart}
+            onTouchMove={onExpTouchMove}
+            onTouchEnd={onExpTouchEnd}
           >
-            {experience.map((e, i) => (
-              <div
-                key={i}
-                className="rv-exp-card"
-                style={{ width: expCardWidth || '100%', borderColor: e.color }}
-              >
-                <div className="rv-exp-card-num" style={{ color: e.color }}>{String(i + 1).padStart(2, '0')}</div>
-                <div className="rv-exp-card-name">{e.role}</div>
-                <div className="rv-exp-card-desc">{e.company} · {e.location} · {e.period}</div>
+            <div
+              className="rv-exp-track"
+              style={{
+                transform: `translateX(${-(expIdx * (expCardWidth + 16)) + expDrag}px)`,
+                transition: expDragging.current ? 'none' : 'transform 0.35s cubic-bezier(0.22,1,0.36,1)',
+              }}
+            >
+              {experience.map((e, i) => (
+                <div
+                  key={i}
+                  className="rv-exp-card"
+                  style={{ width: expCardWidth || '100%', borderColor: e.color }}
+                >
+                  <div className="rv-exp-card-num" style={{ color: e.color }}>{String(i + 1).padStart(2, '0')}</div>
+                  <div className="rv-exp-card-name">{e.role}</div>
+                  <div className="rv-exp-card-desc">{e.company} · {e.location} · {e.period}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="rv-exp-nav">
+            <button className="rv-exp-arrow" onClick={goExpPrev}>‹</button>
+            <div className="rv-exp-dots">
+              {experience.map((exp, i) => (
+                <button
+                  key={i}
+                  className={`rv-exp-dot ${i === expIdx ? 'active' : ''}`}
+                  style={i === expIdx ? { background: exp.color } : {}}
+                  onClick={() => setExpIdx(i)}
+                />
+              ))}
+            </div>
+            <button className="rv-exp-arrow" onClick={goExpNext}>›</button>
+          </div>
+        </section>
+
+        {/* Education — left column on desktop */}
+        <section className="rv-section rv-edu-sec">
+          <SectionHeader number="03" label="EDUCATION" color="#FF6634" />
+          <div className="rv-edu-grid">
+            {education.map((e, i) => (
+              <div key={i} className="rv-edu-card" style={{ border: `1px solid ${e.color}` }}>
+                <p className="rv-edu-degree">{e.degree}</p>
+                <p className="rv-edu-school">{e.school} · {e.location}</p>
               </div>
             ))}
           </div>
-        </div>
-        <div className="rv-exp-nav">
-          <button className="rv-exp-arrow" onClick={goExpPrev}>‹</button>
-          <div className="rv-exp-dots">
-            {experience.map((exp, i) => (
-              <button
-                key={i}
-                className={`rv-exp-dot ${i === expIdx ? 'active' : ''}`}
-                style={i === expIdx ? { background: exp.color } : {}}
-                onClick={() => setExpIdx(i)}
-              />
+        </section>
+
+        {/* Skills — right column on desktop */}
+        <section className="rv-section rv-skills-sec">
+          <SectionHeader number="04" label="SKILLS" color="#44C9E8" />
+          <div className="service-pills" style={{ marginTop: 14 }}>
+            {skills.map(s => <span key={s} className="pill">{s}</span>)}
+          </div>
+        </section>
+
+        {/* Languages — left column on desktop */}
+        <section className="rv-section rv-lang-sec">
+          <SectionHeader number="05" label="LANGUAGES" color="#FFC548" />
+          <div className="service-pills" style={{ marginTop: 14 }}>
+            {['Arabic', 'English', 'French'].map(l => <span key={l} className="pill">{l} · Fluent</span>)}
+          </div>
+        </section>
+
+        {/* Certifications — right column on desktop */}
+        <section className="rv-section rv-certs-sec">
+          <SectionHeader number="06" label="CERTIFICATIONS" color="#42477E" />
+          <div className="rv-cert-list">
+            {certifications.map((c, i) => (
+              <div key={i} className="rv-cert-item">
+                <div className="rv-cert-dot" style={{ background: ['#42477E','#F65A89','#FF6634','#44C9E8','#FFC548','#42477E','#F65A89','#FF6634'][i] }} />
+                {c.url ? (
+                  <a href={c.url} target="_blank" rel="noopener noreferrer" className="rv-cert-link">{c.name}</a>
+                ) : (
+                  <span>{c.name}</span>
+                )}
+              </div>
             ))}
           </div>
-          <button className="rv-exp-arrow" onClick={goExpNext}>›</button>
-        </div>
-      </section>
+        </section>
 
-      {/* Education */}
-      <section className="rv-section">
-        <SectionHeader number="03" label="EDUCATION" color="#FF6634" />
-        <div className="rv-edu-grid">
-          {education.map((e, i) => (
-            <div key={i} className="rv-edu-card" style={{ border: `1px solid ${e.color}` }}>
-              <p className="rv-edu-degree">{e.degree}</p>
-              <p className="rv-edu-school">{e.school} · {e.location}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Skills */}
-      <section className="rv-section">
-        <SectionHeader number="04" label="SKILLS" color="#44C9E8" />
-        <div className="service-pills" style={{ marginTop: 14 }}>
-          {skills.map(s => <span key={s} className="pill">{s}</span>)}
-        </div>
-      </section>
-
-      {/* Languages */}
-      <section className="rv-section">
-        <SectionHeader number="05" label="LANGUAGES" color="#FFC548" />
-        <div className="service-pills" style={{ marginTop: 14 }}>
-          {['Arabic', 'English', 'French'].map(l => <span key={l} className="pill">{l} · Fluent</span>)}
-        </div>
-      </section>
-
-      {/* Certifications */}
-      <section className="rv-section">
-        <SectionHeader number="06" label="CERTIFICATIONS" color="#42477E" />
-        <div className="rv-cert-list">
-          {certifications.map((c, i) => (
-            <div key={i} className="rv-cert-item">
-              <div className="rv-cert-dot" style={{ background: ['#42477E','#F65A89','#FF6634','#44C9E8','#FFC548','#42477E','#F65A89','#FF6634'][i] }} />
-              {c.url ? (
-                <a href={c.url} target="_blank" rel="noopener noreferrer" className="rv-cert-link">{c.name}</a>
-              ) : (
-                <span>{c.name}</span>
-              )}
-            </div>
-          ))}
-        </div>
-      </section>
+      </div>
 
       <Footer />
     </div>

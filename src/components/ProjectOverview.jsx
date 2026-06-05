@@ -147,7 +147,7 @@ function ProjectOverview() {
 
   return (
     <div className="page-anim">
-      {/* ── Navbar ── */}
+      {/* ── Mobile Navbar ── */}
       <nav className="po-nav">
         <div className="po-nav-main">
           <button className="po-back-btn" onClick={() => navigate('/')}>
@@ -164,184 +164,200 @@ function ProjectOverview() {
         </div>
       </nav>
 
-      {/* ── Hero ── */}
+      {/* ── Hero (full width) ── */}
       <section className="po-hero">
         <h1 className="po-title">ATRIA</h1>
         <p className="po-subtitle">Mobile App . UI/UX Design</p>
         <p className="po-tagline">art gallery, live bidding &amp; social</p>
+        <div className="po-tags">
+          <span className="po-tag po-tag-pink">UI DESIGN</span>
+          <span className="po-tag po-tag-cyan">UX RESEARCH</span>
+          <span className="po-tag po-tag-orange">FIGMA</span>
+        </div>
       </section>
 
-      {/* ── Meta Grid ── */}
-      <div className="po-meta-grid">
-        <div className="po-meta-box" style={{ border: '1px solid #42477E' }}>
-          <div className="po-meta-label">ROLE</div>
-          <div className="po-meta-value">UI/UX Designer</div>
-        </div>
-        <div className="po-meta-box" style={{ border: '1px solid #F65A89' }}>
-          <div className="po-meta-label">TIMELINE</div>
-          <div className="po-meta-value">4 Weeks</div>
-        </div>
-        <div className="po-meta-box" style={{ border: '1px solid #FF6634' }}>
-          <div className="po-meta-label">TOOL</div>
-          <div className="po-meta-value">Figma</div>
-        </div>
-        <div className="po-meta-box" style={{ border: '1px solid #44C9E8' }}>
-          <div className="po-meta-label">PLATFORM</div>
-          <div className="po-meta-value">Mobile App</div>
-        </div>
-      </div>
+      {/* ── Desktop 2-column grid ── */}
+      <div className="po-desktop-grid">
 
-      {/* ── Carousel ── */}
-      <div
-        className="po-carousel"
-        onTouchStart={onCarouselTouchStart}
-        onTouchMove={onCarouselTouchMove}
-        onTouchEnd={onCarouselTouchEnd}
-      >
-        <div
-          className="po-carousel-track"
-          style={{
-            transform: `translateX(calc(${-carouselIdx * 100}% + ${carouselDrag}px))`,
-            transition: carouselDragging.current ? 'none' : 'transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)',
-          }}
-        >
-          {carouselImages.map((img, i) => (
-            <img key={i} src={img} alt={`Atria screen ${i + 1}`} className="po-carousel-img" />
-          ))}
-        </div>
-      </div>
-      <div className="po-carousel-nav">
-        <button className="po-process-arrow" onClick={() => setCarouselIdx(i => (i - 1 + carouselImages.length) % carouselImages.length)}>‹</button>
-        <div className="po-carousel-dots">
-          {['#42477E','#F65A89','#FF6634','#44C9E8'].map((color, i) => (
-            <button
-              key={i}
-              className={`po-carousel-dot ${i === carouselIdx ? 'active' : ''}`}
-              style={i === carouselIdx ? { background: color } : {}}
-              onClick={() => setCarouselIdx(i)}
-            />
-          ))}
-        </div>
-        <button className="po-process-arrow" onClick={() => setCarouselIdx(i => (i + 1) % carouselImages.length)}>›</button>
-      </div>
-
-      {/* ── Section 01 — Overview ── */}
-      <section className="po-section">
-        <SectionHeader number="01" label="OVERVIEW" color="#42477E" underlineColor="#42477E" />
-        <p className="po-body-text">
-          Atria is an art gallery mobile app combining exhibition ticketing, an art marketplace
-          with live bidding, and a social layer for artists and collectors.
-        </p>
-      </section>
-
-      {/* ── Section 02 — The Problem ── */}
-      <section className="po-section">
-        <SectionHeader number="02" label="THE PROBLEM" color="#F65A89" underlineColor="#F65A89" />
-        <p className="po-body-text">
-          Art discovery is fragmented — galleries, auctions, and artist profiles live on separate
-          platforms. There is no single space that connects discovery, purchase, and community.
-        </p>
-      </section>
-
-      {/* ── Section 03 — Process ── */}
-      <section className="po-section">
-        <SectionHeader number="03" label="PROCESS" color="#FF6634" underlineColor="#FF6634" />
-        <div
-          ref={processWrapRef}
-          className="po-process-track-wrap"
-          onTouchStart={onProcessTouchStart}
-          onTouchMove={onProcessTouchMove}
-          onTouchEnd={onProcessTouchEnd}
-        >
+        {/* LEFT COLUMN: Carousel + Meta */}
+        <div className="po-left-col">
           <div
-            className="po-process-track"
-            style={{
-              transform: `translateX(${-(processIdx * (processCardWidth + 16)) + processDrag}px)`,
-              transition: processDragging.current ? 'none' : 'transform 0.35s cubic-bezier(0.22,1,0.36,1)',
-            }}
+            className="po-carousel"
+            onTouchStart={onCarouselTouchStart}
+            onTouchMove={onCarouselTouchMove}
+            onTouchEnd={onCarouselTouchEnd}
           >
-            {steps.map((s, i) => (
-              <div
-                key={i}
-                className="po-process-card"
-                style={{ width: processCardWidth || '100%', borderColor: s.color }}
-              >
-                <div className="po-process-card-num" style={{ color: s.color }}>{s.num}</div>
-                <div className="po-process-card-name">{s.name}</div>
-                <div className="po-process-card-desc">{s.desc}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className="po-process-nav">
-          <button className="po-process-arrow" onClick={goProcessPrev}>‹</button>
-          <div className="po-process-dots">
-            {steps.map((s, i) => (
-              <button
-                key={i}
-                className={`po-process-dot ${i === processIdx ? 'active' : ''}`}
-                style={i === processIdx ? { background: s.color } : {}}
-                onClick={() => setProcessIdx(i)}
-              />
-            ))}
-          </div>
-          <button className="po-process-arrow" onClick={goProcessNext}>›</button>
-        </div>
-      </section>
-
-      {/* ── Section 04 — Screens ── */}
-      <section className="po-section-screens">
-        <div style={{ paddingRight: 0 }}>
-          <SectionHeader number="04" label="SCREENS" color="#44C9E8" underlineColor="#44C9E8" />
-        </div>
-        <div
-          className="po-screens-scroll"
-          ref={scrollRef}
-          onMouseDown={onMouseDown}
-          onMouseUp={onMouseUp}
-          onMouseLeave={onMouseUp}
-          onMouseMove={onMouseMove}
-        >
-          {screenImages.map((src, i) => (
-            <img
-              key={i}
-              src={src}
-              alt={`Screen ${i + 1}`}
-              className="po-screen-img"
-              draggable={false}
-              onClick={() => openLightbox(i)}
-            />
-          ))}
-        </div>
-      </section>
-
-      {/* ── Section 05 — Outcome ── */}
-      <section className="po-section">
-        <SectionHeader number="05" label="OUTCOME" color="#FFC548" underlineColor="#FFC548" />
-        <div className="po-outcome-box">
-          <p className="po-body-text" style={{ marginTop: 0 }}>
-            Full hi-fi shipped across 8 screens. 85% usability success rate. Navigation iterated 2× based on test findings.
-            <br /><br />
-            <strong>What I'd do differently</strong><br />
-            Test the IA earlier — nav confusion caught late.<br />
-            Add an artist onboarding flow in v2.<br />
-            Explore accessibility contrast for dark palette.
-          </p>
-        </div>
-      </section>
-
-      {/* ── Next Project ── */}
-      <section className="po-section">
-        <div className="po-grad-wrap po-next-wrap">
-          <div className="po-next-card">
-            <div>
-              <div className="po-next-label">NEXT PROJECT</div>
-              <div className="po-next-title">LINKER</div>
+            <div
+              className="po-carousel-track"
+              style={{
+                transform: `translateX(calc(${-carouselIdx * 100}% + ${carouselDrag}px))`,
+                transition: carouselDragging.current ? 'none' : 'transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)',
+              }}
+            >
+              {carouselImages.map((img, i) => (
+                <img key={i} src={img} alt={`Atria screen ${i + 1}`} className="po-carousel-img" />
+              ))}
             </div>
-            <span className="po-next-arrow">→</span>
+          </div>
+          <div className="po-carousel-nav">
+            <button className="po-process-arrow" onClick={() => setCarouselIdx(i => (i - 1 + carouselImages.length) % carouselImages.length)}>‹</button>
+            <div className="po-carousel-dots">
+              {['#42477E','#F65A89','#FF6634','#44C9E8'].map((color, i) => (
+                <button
+                  key={i}
+                  className={`po-carousel-dot ${i === carouselIdx ? 'active' : ''}`}
+                  style={i === carouselIdx ? { background: color } : {}}
+                  onClick={() => setCarouselIdx(i)}
+                />
+              ))}
+            </div>
+            <button className="po-process-arrow" onClick={() => setCarouselIdx(i => (i + 1) % carouselImages.length)}>›</button>
+          </div>
+
+          {/* Meta Grid */}
+          <div className="po-meta-grid">
+            <div className="po-meta-box" style={{ border: '1px solid #42477E' }}>
+              <div className="po-meta-label">ROLE</div>
+              <div className="po-meta-value">UI/UX Designer</div>
+            </div>
+            <div className="po-meta-box" style={{ border: '1px solid #F65A89' }}>
+              <div className="po-meta-label">TIMELINE</div>
+              <div className="po-meta-value">4 Weeks</div>
+            </div>
+            <div className="po-meta-box" style={{ border: '1px solid #FF6634' }}>
+              <div className="po-meta-label">TOOL</div>
+              <div className="po-meta-value">Figma</div>
+            </div>
+            <div className="po-meta-box" style={{ border: '1px solid #44C9E8' }}>
+              <div className="po-meta-label">PLATFORM</div>
+              <div className="po-meta-value">Mobile App</div>
+            </div>
           </div>
         </div>
-      </section>
+
+        {/* RIGHT COLUMN: All sections */}
+        <div className="po-right-col">
+
+          {/* Section 01 — Overview */}
+          <section className="po-section">
+            <SectionHeader number="01" label="OVERVIEW" underlineColor="#42477E" />
+            <p className="po-body-text">
+              Atria is an art gallery mobile app combining exhibition ticketing, an art marketplace
+              with live bidding, and a social layer for artists and collectors.
+            </p>
+          </section>
+
+          {/* Section 02 — The Problem */}
+          <section className="po-section">
+            <SectionHeader number="02" label="THE PROBLEM" underlineColor="#F65A89" />
+            <p className="po-body-text">
+              Art discovery is fragmented — galleries, auctions, and artist profiles live on separate
+              platforms. There is no single space that connects discovery, purchase, and community.
+            </p>
+          </section>
+
+          {/* Section 03 — Process */}
+          <section className="po-section">
+            <SectionHeader number="03" label="PROCESS" underlineColor="#FF6634" />
+            <div
+              ref={processWrapRef}
+              className="po-process-track-wrap"
+              onTouchStart={onProcessTouchStart}
+              onTouchMove={onProcessTouchMove}
+              onTouchEnd={onProcessTouchEnd}
+            >
+              <div
+                className="po-process-track"
+                style={{
+                  transform: `translateX(${-(processIdx * (processCardWidth + 16)) + processDrag}px)`,
+                  transition: processDragging.current ? 'none' : 'transform 0.35s cubic-bezier(0.22,1,0.36,1)',
+                }}
+              >
+                {steps.map((s, i) => (
+                  <div
+                    key={i}
+                    className="po-process-card"
+                    style={{ width: processCardWidth || '100%', borderColor: s.color }}
+                  >
+                    <div className="po-process-card-num" style={{ color: s.color }}>{s.num}</div>
+                    <div className="po-process-card-name">{s.name}</div>
+                    <div className="po-process-card-desc">{s.desc}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="po-process-nav">
+              <button className="po-process-arrow" onClick={goProcessPrev}>‹</button>
+              <div className="po-process-dots">
+                {steps.map((s, i) => (
+                  <button
+                    key={i}
+                    className={`po-process-dot ${i === processIdx ? 'active' : ''}`}
+                    style={i === processIdx ? { background: s.color } : {}}
+                    onClick={() => setProcessIdx(i)}
+                  />
+                ))}
+              </div>
+              <button className="po-process-arrow" onClick={goProcessNext}>›</button>
+            </div>
+          </section>
+
+          {/* Section 04 — Screens */}
+          <section className="po-section-screens">
+            <div style={{ paddingRight: 0 }}>
+              <SectionHeader number="04" label="SCREENS" underlineColor="#44C9E8" />
+            </div>
+            <div
+              className="po-screens-scroll"
+              ref={scrollRef}
+              onMouseDown={onMouseDown}
+              onMouseUp={onMouseUp}
+              onMouseLeave={onMouseUp}
+              onMouseMove={onMouseMove}
+            >
+              {screenImages.map((src, i) => (
+                <img
+                  key={i}
+                  src={src}
+                  alt={`Screen ${i + 1}`}
+                  className="po-screen-img"
+                  draggable={false}
+                  onClick={() => openLightbox(i)}
+                />
+              ))}
+            </div>
+          </section>
+
+          {/* Section 05 — Outcome */}
+          <section className="po-section">
+            <SectionHeader number="05" label="OUTCOME" underlineColor="#FFC548" />
+            <div className="po-outcome-box">
+              <p className="po-body-text" style={{ marginTop: 0 }}>
+                Full hi-fi shipped across 8 screens. 85% usability success rate. Navigation iterated 2× based on test findings.
+                <br /><br />
+                <strong>What I'd do differently</strong><br />
+                Test the IA earlier — nav confusion caught late.<br />
+                Add an artist onboarding flow in v2.<br />
+                Explore accessibility contrast for dark palette.
+              </p>
+            </div>
+          </section>
+
+          {/* Next Project */}
+          <section className="po-section">
+            <div className="po-grad-wrap po-next-wrap">
+              <div className="po-next-card">
+                <div>
+                  <div className="po-next-label">NEXT PROJECT</div>
+                  <div className="po-next-title">LINKER</div>
+                </div>
+                <span className="po-next-arrow">→</span>
+              </div>
+            </div>
+          </section>
+
+        </div>{/* end po-right-col */}
+      </div>{/* end po-desktop-grid */}
 
       <Footer />
 

@@ -507,54 +507,53 @@
 
   .po-title { font-size: 56px; }
 
-  .po-cover-card {
-    width: calc(100% - 120px);
-    max-width: 900px;
-    height: 320px;
-    margin: 28px auto 0;
+  /* 2-column grid layout */
+  .po-desktop-grid {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    column-gap: 48px;
+    padding: 24px 60px 60px;
+    align-items: start;
   }
 
-  .po-carousel {
-    max-width: 480px;
+  /* Left column: sticky preview panel */
+  .po-left-col {
+    position: sticky;
+    top: 88px;
+    align-self: start;
   }
 
-  .po-meta-grid {
-    grid-template-columns: repeat(4, 1fr);
-    padding: 0 60px;
-    max-width: 100%;
+  /* Carousel fills left column, no top margin (grid handles spacing) */
+  .po-left-col .po-carousel {
+    width: 100%;
+    max-width: none;
+    margin-top: 0;
   }
 
-  .po-section {
-    padding: 0 60px;
+  /* Meta grid: 2×2 in sidebar, no extra padding */
+  .po-left-col .po-meta-grid {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0;
+    margin-top: 16px;
   }
 
-  .po-section-screens {
-    padding-left: 60px;
-  }
+  /* Right column: sections with no extra horizontal padding */
+  .po-right-col .po-section { padding: 0; }
+  .po-right-col .po-section-screens { padding: 0; }
+  .po-right-col .po-screens-scroll { padding-right: 0; }
 
-  .po-process-steps {
-    max-width: 100%;
-  }
+  /* Remove top margin from first section so it aligns with left column top */
+  .po-right-col > .po-section:first-child { margin-top: 0; }
 
+  /* Screen images slightly larger */
   .po-screen-img {
     width: 200px;
     height: 434px;
   }
 
-  .po-screens-scroll {
-    padding-right: 60px;
-  }
-
-  .po-outcome-box {
-    width: calc(100% - 120px);
-    max-width: 100%;
-  }
-
-  .po-next-wrap {
-    width: calc(100% - 120px);
-    max-width: 100%;
-    margin: 28px auto 60px;
-  }
+  /* Outcome and next project fill right column */
+  .po-right-col .po-outcome-box { width: 100%; }
+  .po-right-col .po-next-wrap { width: 100%; margin: 28px 0 60px; }
 }
 
 /* ─── NEXT PROJECT CARD ───────────────────────────────── */

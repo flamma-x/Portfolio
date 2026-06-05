@@ -275,10 +275,37 @@
 /* ── Desktop ── */
 @media (min-width: 768px) {
   .rv-nav { display: none; }
-  .rv-hero { padding: 40px 60px 20px; }
-  .rv-name { font-size: 56px; }
-  .rv-contact { flex-direction: row; gap: 24px; }
-  .rv-section { padding: 0 60px; margin-top: 40px; }
-  .rv-exp-list { gap: 16px; }
-  .rv-edu-grid { grid-template-columns: repeat(4, 1fr); }
+
+  .rv-desktop-grid {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    column-gap: 48px;
+    row-gap: 36px;
+    padding: 40px 60px 60px;
+    align-items: start;
+  }
+
+  /* Reset mobile spacing for all grid children */
+  .rv-desktop-grid .rv-hero,
+  .rv-desktop-grid .rv-section {
+    padding: 0;
+    margin-top: 0;
+  }
+
+  /* Grid placement — left col: hero, edu, lang | right col: summary, exp, skills, certs */
+  .rv-hero-sec    { grid-column: 1; grid-row: 1; }
+  .rv-summary-sec { grid-column: 2; grid-row: 1; }
+  .rv-exp-sec     { grid-column: 2; grid-row: 2; }
+  .rv-edu-sec     { grid-column: 1; grid-row: 2; }
+  .rv-skills-sec  { grid-column: 2; grid-row: 3; }
+  .rv-lang-sec    { grid-column: 1; grid-row: 3; }
+  .rv-certs-sec   { grid-column: 2; grid-row: 4; }
+
+  .rv-name { font-size: 52px; }
+
+  /* Keep contact stacked vertically in sidebar */
+  .rv-desktop-grid .rv-contact { flex-direction: column; gap: 4px; }
+
+  /* Education: single column in narrow sidebar */
+  .rv-edu-sec .rv-edu-grid { grid-template-columns: 1fr; }
 }
