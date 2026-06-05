@@ -52,6 +52,7 @@ function ProjectOverview() {
   const [carouselDrag, setCarouselDrag] = useState(0);
   const carouselDragStart = useRef(0);
   const carouselDragging = useRef(false);
+  const carouselTimer = useRef(null);
   const [processIdx, setProcessIdx] = useState(0);
   const [processDrag, setProcessDrag] = useState(0);
   const [processCardWidth, setProcessCardWidth] = useState(0);
@@ -69,6 +70,7 @@ function ProjectOverview() {
   }, []);
 
   const onCarouselTouchStart = (e) => {
+    clearInterval(carouselTimer.current);
     carouselDragStart.current = e.touches[0].clientX;
     carouselDragging.current = true;
   };
@@ -83,6 +85,7 @@ function ProjectOverview() {
     if (diff < -50) setCarouselIdx(i => (i + 1) % carouselImages.length);
     else if (diff > 50) setCarouselIdx(i => (i - 1 + carouselImages.length) % carouselImages.length);
     setCarouselDrag(0);
+    startCarouselTimer();
   };
 
   const goProcessPrev = () => setProcessIdx(i => (i - 1 + steps.length) % steps.length);
@@ -107,11 +110,16 @@ function ProjectOverview() {
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
+  const startCarouselTimer = () => {
+    clearInterval(carouselTimer.current);
+    carouselTimer.current = setInterval(() => {
       setCarouselIdx(i => (i + 1) % carouselImages.length);
     }, 3000);
-    return () => clearInterval(timer);
+  };
+
+  useEffect(() => {
+    startCarouselTimer();
+    return () => clearInterval(carouselTimer.current);
   }, []);
 
   const scrollRef = useRef(null);
