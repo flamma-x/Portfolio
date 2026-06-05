@@ -75,14 +75,14 @@ function Hero() {
       <div className="hero-buttons" style={{ marginTop: 25 }}>
         <div className="btn-hire-wrapper">
           <button
-            className={`btn-hire${isEaster ? ' btn-hire--easter' : ''}`}
+            className="btn-hire"
             onPointerDown={handlePressStart}
             onPointerUp={handlePressEnd}
             onPointerCancel={handlePressCancel}
             style={{ userSelect: 'none', WebkitUserSelect: 'none', touchAction: 'none' }}
           >
             {isEaster ? (
-              <FaceGrin size={44} />
+              <FaceGrin size={34} />
             ) : (
               <>
                 {btnState === 'grinning'

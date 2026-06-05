@@ -200,12 +200,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.15s, width 0.25s ease, height 0.25s ease;
-}
-
-.btn-hire--easter {
-  width: 60px;
-  height: 60px;
+  transition: transform 0.15s;
 }
 
 .btn-hire-wrapper:active {
