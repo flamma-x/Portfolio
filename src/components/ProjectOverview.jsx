@@ -205,8 +205,13 @@ function ProjectOverview() {
       <div className="po-carousel-nav">
         <button className="po-process-arrow" onClick={() => setCarouselIdx(i => (i - 1 + carouselImages.length) % carouselImages.length)}>‹</button>
         <div className="po-carousel-dots">
-          {carouselImages.map((_, i) => (
-            <button key={i} className={`po-carousel-dot ${i === carouselIdx ? 'active' : ''}`} onClick={() => setCarouselIdx(i)} />
+          {['#42477E','#F65A89','#FF6634','#44C9E8'].map((color, i) => (
+            <button
+              key={i}
+              className={`po-carousel-dot ${i === carouselIdx ? 'active' : ''}`}
+              style={i === carouselIdx ? { background: color } : {}}
+              onClick={() => setCarouselIdx(i)}
+            />
           ))}
         </div>
         <button className="po-process-arrow" onClick={() => setCarouselIdx(i => (i + 1) % carouselImages.length)}>›</button>
