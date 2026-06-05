@@ -10,6 +10,12 @@ const FaceSad = ({ style = {} }) => (
   </svg>
 );
 
+const FaceMeh = ({ size = 24, style = {} }) => (
+  <svg width={size} height={size} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style={style}>
+    <path d="M4 18H16V20H4V18ZM4 0H16V2H4V0ZM16 2H18V4H16V2ZM2 2H4V4H2V2ZM2 16H4V18H2V16ZM16 16H18V18H16V16ZM0 4H2V16H0V4ZM18 4H20V16H18V4ZM5 12H15V14H5V12ZM6 6H8V8H6V6ZM12 6H14V8H12V6Z" fill="#42477E"/>
+  </svg>
+);
+
 const FaceGrin = ({ size = 24, style = {} }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={style}>
     <path d="M16 14V15H8V14H6V17H7V18H8V19H16V18H17V17H18V14H16ZM15 17V18H10V17H11V16H16V17H15Z" fill="#42477E"/>
@@ -82,7 +88,7 @@ function Hero() {
             style={{ userSelect: 'none', WebkitUserSelect: 'none', touchAction: 'none' }}
           >
             {isEaster ? (
-              <FaceGrin size={34} />
+              <FaceMeh size={34} />
             ) : (
               <>
                 {btnState === 'grinning'
