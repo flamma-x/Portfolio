@@ -21,7 +21,7 @@ function Hero() {
       </h1>
 
 
-      <div style={{ marginTop: 24 }}>
+      <div style={{ marginTop: 24, display: 'flex', justifyContent: 'center' }}>
         <PortfolioID />
       </div>
 
