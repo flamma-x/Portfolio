@@ -50,16 +50,28 @@ function ProjectOverview() {
   const [lightboxIdx, setLightboxIdx] = useState(null);
   const [carouselIdx, setCarouselIdx] = useState(0);
   const [processIdx, setProcessIdx] = useState(0);
-  const processTouchStart = useRef(null);
+  const [processDrag, setProcessDrag] = useState(0);
+  const processDragStart = useRef(null);
+  const processDragging = useRef(false);
 
   const goProcessPrev = () => setProcessIdx(i => (i - 1 + steps.length) % steps.length);
   const goProcessNext = () => setProcessIdx(i => (i + 1) % steps.length);
-  const onProcessTouchStart = (e) => { processTouchStart.current = e.touches[0].clientX; };
-  const onProcessTouchEnd = (e) => {
-    if (processTouchStart.current === null) return;
-    const diff = processTouchStart.current - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 40) diff > 0 ? goProcessNext() : goProcessPrev();
-    processTouchStart.current = null;
+
+  const onProcessTouchStart = (e) => {
+    processDragStart.current = e.touches[0].clientX;
+    processDragging.current = true;
+    setProcessDrag(0);
+  };
+  const onProcessTouchMove = (e) => {
+    if (!processDragging.current) return;
+    setProcessDrag(e.touches[0].clientX - processDragStart.current);
+  };
+  const onProcessTouchEnd = () => {
+    if (!processDragging.current) return;
+    processDragging.current = false;
+    if (processDrag < -50) goProcessNext();
+    else if (processDrag > 50) goProcessPrev();
+    setProcessDrag(0);
   };
 
   useEffect(() => {
@@ -176,9 +188,17 @@ function ProjectOverview() {
         <div
           className="po-process-carousel"
           onTouchStart={onProcessTouchStart}
+          onTouchMove={onProcessTouchMove}
           onTouchEnd={onProcessTouchEnd}
         >
-          <div className="po-process-card" style={{ borderColor: steps[processIdx].color }}>
+          <div
+            className="po-process-card"
+            style={{
+              borderColor: steps[processIdx].color,
+              transform: `translateX(${processDrag}px)`,
+              transition: processDrag === 0 ? 'transform 0.35s cubic-bezier(0.22,1,0.36,1), border-color 0.3s' : 'border-color 0.3s',
+            }}
+          >
             <div className="po-process-card-num" style={{ color: steps[processIdx].color }}>
               {steps[processIdx].num}
             </div>
