@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import pixelFace from '../assets/illustrations and icons/face.png';
+import PortfolioID from './PortfolioID';
 
 function Hero() {
   const navigate = useNavigate();
@@ -19,9 +20,10 @@ function Hero() {
         <span style={{ color: '#1a1a1a' }}> &amp; BUILDER</span>
       </h1>
 
-      <p className="hero-subtitle">
-        I design digital products, apps, platforms and experiences that feel as good as they look
-      </p>
+
+      <div style={{ marginTop: 24 }}>
+        <PortfolioID />
+      </div>
 
       <div className="hero-buttons">
         <div className="btn-hire-wrapper">
