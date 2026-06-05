@@ -17,8 +17,8 @@ function HomePage() {
     <div className="page-anim">
       <Navbar className="mobile-only-nav" />
       <Hero />
-      <RecentWork />
       <MyStory />
+      <RecentWork />
       <Services />
       <AllProjects />
       <Footer />
