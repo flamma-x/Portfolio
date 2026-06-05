@@ -85,6 +85,8 @@ function ProjectOverview() {
     setProcessDrag(0);
   };
 
+  useEffect(() => { window.scrollTo(0, 0); }, []);
+
   useEffect(() => {
     const timer = setInterval(() => {
       setCarouselIdx(i => (i + 1) % carouselImages.length);
