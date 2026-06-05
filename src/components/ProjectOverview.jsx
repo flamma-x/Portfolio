@@ -49,6 +49,18 @@ function ProjectOverview() {
   const navigate = useNavigate();
   const [lightboxIdx, setLightboxIdx] = useState(null);
   const [carouselIdx, setCarouselIdx] = useState(0);
+  const [processIdx, setProcessIdx] = useState(0);
+  const processTouchStart = useRef(null);
+
+  const goProcessPrev = () => setProcessIdx(i => (i - 1 + steps.length) % steps.length);
+  const goProcessNext = () => setProcessIdx(i => (i + 1) % steps.length);
+  const onProcessTouchStart = (e) => { processTouchStart.current = e.touches[0].clientX; };
+  const onProcessTouchEnd = (e) => {
+    if (processTouchStart.current === null) return;
+    const diff = processTouchStart.current - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) diff > 0 ? goProcessNext() : goProcessPrev();
+    processTouchStart.current = null;
+  };
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -161,19 +173,32 @@ function ProjectOverview() {
       {/* ── Section 03 — Process ── */}
       <section className="po-section">
         <SectionHeader number="03" label="PROCESS" color="#FF6634" underlineColor="#FF6634" />
-        <div className="po-process-steps">
-          {steps.map((s) => (
-            <div className="po-step-row" key={s.num}>
-              <div className="po-step-left">
-                <div className="po-step-dot" style={{ background: s.dot }} />
-                <div>
-                  <div className="po-step-name">{s.name}</div>
-                  <div className="po-step-desc">{s.desc}</div>
-                </div>
-              </div>
-              <span className="po-step-num" style={{ color: s.color }}>{s.num}</span>
+        <div
+          className="po-process-carousel"
+          onTouchStart={onProcessTouchStart}
+          onTouchEnd={onProcessTouchEnd}
+        >
+          <div className="po-process-card" style={{ borderColor: steps[processIdx].color }}>
+            <div className="po-process-card-num" style={{ color: steps[processIdx].color }}>
+              {steps[processIdx].num}
             </div>
-          ))}
+            <div className="po-process-card-name">{steps[processIdx].name}</div>
+            <div className="po-process-card-desc">{steps[processIdx].desc}</div>
+          </div>
+          <div className="po-process-nav">
+            <button className="po-process-arrow" onClick={goProcessPrev}>‹</button>
+            <div className="po-process-dots">
+              {steps.map((s, i) => (
+                <button
+                  key={i}
+                  className={`po-process-dot ${i === processIdx ? 'active' : ''}`}
+                  style={i === processIdx ? { background: s.color } : {}}
+                  onClick={() => setProcessIdx(i)}
+                />
+              ))}
+            </div>
+            <button className="po-process-arrow" onClick={goProcessNext}>›</button>
+          </div>
         </div>
       </section>
 

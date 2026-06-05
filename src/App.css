@@ -326,7 +326,7 @@
 .rw-card-sub {
   font-family: 'Inter', sans-serif;
   font-weight: 400;
-  font-size: 12px;
+  font-size: 14px;
   color: #fff;
   letter-spacing: 0.6px;
   margin-top: 6px;
@@ -389,7 +389,7 @@
   padding: 5px 12px;
   font-family: 'Inter', sans-serif;
   font-weight: 400;
-  font-size: 11px;
+  font-size: 13px;
   color: #555555;
 }
 
@@ -444,7 +444,7 @@
 .project-type {
   font-family: 'Inter', sans-serif;
   font-weight: 400;
-  font-size: 11px;
+  font-size: 13px;
   color: #888888;
   margin-top: 3px;
 }
@@ -476,7 +476,7 @@
 .footer-tagline {
   font-family: 'Inter', sans-serif;
   font-weight: 400;
-  font-size: 13px;
+  font-size: 15px;
   color: rgba(66, 71, 126, 0.6);
   margin-top: 15px;
 }
@@ -490,7 +490,7 @@
 
 .footer-contact-item {
   font-family: 'Inter', sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   display: flex;
   gap: 8px;
 }
@@ -538,7 +538,7 @@
   margin-top: 16px;
   font-family: 'Inter', sans-serif;
   font-weight: 400;
-  font-size: 11px;
+  font-size: 13px;
   color: rgba(66, 71, 126, 0.4);
   text-align: center;
 }
