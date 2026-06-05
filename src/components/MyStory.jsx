@@ -11,7 +11,7 @@ const stories = [
   { title: 'Finding the foundation', color: '#F65A89', text: "I started with Python at Horizon, learning the basics of how things are built. It gave me logic, but not what I was looking for. I was still searching.",                               avatar: story2, reverse: true  },
   { title: 'Getting closer',         color: '#FF6634', text: "I moved into web development with React and started building websites for real clients. The work was real, the money was real but something was still missing. I could build, but I wanted to design.", avatar: story3, reverse: false },
   { title: 'The click',              color: '#44C9E8', text: "I dug deeper and found UI/UX. That was it. I picked up Figma on my own and started designing everything I could. For the first time, it didn't feel like work.",                        avatar: story4, reverse: true  },
-  { title: 'Flamma',                 color: '#FFC548', text: "I dug deeper and found UI/UX. That was it. I picked up Figma on my own and started designing everything I could. For the first time, it didn't feel like work.",                        avatar: story5, reverse: false },
+  { title: 'Now',                    color: '#FFC548', text: "Every day I get a little better. The projects are real, the skills are growing, and the studio I'm building (Flamma.ux) is becoming exactly what I imagined when I took that leap.", avatar: story5, reverse: false },
 ];
 
 function MyStory() {
@@ -19,7 +19,7 @@ function MyStory() {
     <section className="my-story">
       <div className="section-label-wrap">
         <span className="section-label">My Story</span>
-        <div className="section-underline" style={{ width: 85, background: '#F65A89' }} />
+        <div className="section-underline" style={{ width: 85, background: '#42477E' }} />
       </div>
 
       <div className="ms-cards">
