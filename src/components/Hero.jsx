@@ -32,8 +32,8 @@ function Hero() {
             Hire Me
           </button>
         </div>
-        <a href="#" target="_blank" rel="noopener noreferrer" className="btn-resume" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', textDecoration: 'none', color: '#42477E', borderColor: '#42477E' }}>
-          Explore
+        <a href="/resume" className="btn-resume" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', textDecoration: 'none', color: '#42477E', borderColor: '#42477E' }}>
+          Resume
         </a>
       </div>
 

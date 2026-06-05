@@ -18,7 +18,7 @@ function Navbar({ className = '' }) {
         <div className="navbar-desktop-links">
           <Link to="/" className="desktop-nav-link">recent work</Link>
           <Link to="/contact" className="desktop-nav-link">contact</Link>
-          <a href="#" target="_blank" rel="noopener noreferrer" className="desktop-nav-link">resume</a>
+          <Link to="/resume" className="desktop-nav-link">resume</Link>
         </div>
 
         <div className={`hamburger ${exiting ? 'exit' : ''}`} onClick={handleHamburger}>

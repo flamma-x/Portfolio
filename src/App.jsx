@@ -11,6 +11,7 @@ import ProjectOverview from './components/ProjectOverview';
 import Menu from './components/Menu';
 import HireMe from './components/HireMe';
 import Contact from './components/Contact';
+import Resume from './components/Resume';
 
 function HomePage() {
   return (
@@ -37,6 +38,7 @@ function App() {
           <Route path="/menu"          element={<Menu />} />
           <Route path="/hire"          element={<HireMe />} />
           <Route path="/contact"       element={<Contact />} />
+          <Route path="/resume"        element={<Resume />} />
         </Routes>
       </div>
     </BrowserRouter>
