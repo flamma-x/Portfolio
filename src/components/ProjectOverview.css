@@ -293,11 +293,19 @@
 }
 
 /* ─── PROCESS CAROUSEL ────────────────────────────────── */
-.po-process-carousel {
+.po-process-track-wrap {
+  overflow: hidden;
   margin-top: 14px;
+  touch-action: pan-y;
+}
+
+.po-process-track {
+  display: flex;
+  will-change: transform;
 }
 
 .po-process-card {
+  flex-shrink: 0;
   border: 1.5px solid;
   border-radius: 16px;
   padding: 28px 24px;
@@ -305,7 +313,7 @@
   min-height: 180px;
   display: flex;
   flex-direction: column;
-  transition: border-color 0.3s;
+  box-sizing: border-box;
 }
 
 .po-process-card-num {

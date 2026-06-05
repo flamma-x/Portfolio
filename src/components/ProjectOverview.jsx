@@ -51,8 +51,19 @@ function ProjectOverview() {
   const [carouselIdx, setCarouselIdx] = useState(0);
   const [processIdx, setProcessIdx] = useState(0);
   const [processDrag, setProcessDrag] = useState(0);
-  const processDragStart = useRef(null);
+  const [processCardWidth, setProcessCardWidth] = useState(0);
+  const processWrapRef = useRef(null);
+  const processDragStart = useRef(0);
   const processDragging = useRef(false);
+
+  useEffect(() => {
+    const measure = () => {
+      if (processWrapRef.current) setProcessCardWidth(processWrapRef.current.offsetWidth);
+    };
+    measure();
+    window.addEventListener('resize', measure);
+    return () => window.removeEventListener('resize', measure);
+  }, []);
 
   const goProcessPrev = () => setProcessIdx(i => (i - 1 + steps.length) % steps.length);
   const goProcessNext = () => setProcessIdx(i => (i + 1) % steps.length);
@@ -60,17 +71,17 @@ function ProjectOverview() {
   const onProcessTouchStart = (e) => {
     processDragStart.current = e.touches[0].clientX;
     processDragging.current = true;
-    setProcessDrag(0);
   };
   const onProcessTouchMove = (e) => {
     if (!processDragging.current) return;
     setProcessDrag(e.touches[0].clientX - processDragStart.current);
   };
-  const onProcessTouchEnd = () => {
+  const onProcessTouchEnd = (e) => {
     if (!processDragging.current) return;
     processDragging.current = false;
-    if (processDrag < -50) goProcessNext();
-    else if (processDrag > 50) goProcessPrev();
+    const diff = e.changedTouches[0].clientX - processDragStart.current;
+    if (diff < -50) goProcessNext();
+    else if (diff > 50) goProcessPrev();
     setProcessDrag(0);
   };
 
@@ -186,39 +197,45 @@ function ProjectOverview() {
       <section className="po-section">
         <SectionHeader number="03" label="PROCESS" color="#FF6634" underlineColor="#FF6634" />
         <div
-          className="po-process-carousel"
+          ref={processWrapRef}
+          className="po-process-track-wrap"
           onTouchStart={onProcessTouchStart}
           onTouchMove={onProcessTouchMove}
           onTouchEnd={onProcessTouchEnd}
         >
           <div
-            className="po-process-card"
+            className="po-process-track"
             style={{
-              borderColor: steps[processIdx].color,
-              transform: `translateX(${processDrag}px)`,
-              transition: processDrag === 0 ? 'transform 0.35s cubic-bezier(0.22,1,0.36,1), border-color 0.3s' : 'border-color 0.3s',
+              transform: `translateX(${-(processIdx * processCardWidth) + processDrag}px)`,
+              transition: processDragging.current ? 'none' : 'transform 0.35s cubic-bezier(0.22,1,0.36,1)',
             }}
           >
-            <div className="po-process-card-num" style={{ color: steps[processIdx].color }}>
-              {steps[processIdx].num}
-            </div>
-            <div className="po-process-card-name">{steps[processIdx].name}</div>
-            <div className="po-process-card-desc">{steps[processIdx].desc}</div>
+            {steps.map((s, i) => (
+              <div
+                key={i}
+                className="po-process-card"
+                style={{ width: processCardWidth || '100%', borderColor: s.color }}
+              >
+                <div className="po-process-card-num" style={{ color: s.color }}>{s.num}</div>
+                <div className="po-process-card-name">{s.name}</div>
+                <div className="po-process-card-desc">{s.desc}</div>
+              </div>
+            ))}
           </div>
-          <div className="po-process-nav">
-            <button className="po-process-arrow" onClick={goProcessPrev}>‹</button>
-            <div className="po-process-dots">
-              {steps.map((s, i) => (
-                <button
-                  key={i}
-                  className={`po-process-dot ${i === processIdx ? 'active' : ''}`}
-                  style={i === processIdx ? { background: s.color } : {}}
-                  onClick={() => setProcessIdx(i)}
-                />
-              ))}
-            </div>
-            <button className="po-process-arrow" onClick={goProcessNext}>›</button>
+        </div>
+        <div className="po-process-nav">
+          <button className="po-process-arrow" onClick={goProcessPrev}>‹</button>
+          <div className="po-process-dots">
+            {steps.map((s, i) => (
+              <button
+                key={i}
+                className={`po-process-dot ${i === processIdx ? 'active' : ''}`}
+                style={i === processIdx ? { background: s.color } : {}}
+                onClick={() => setProcessIdx(i)}
+              />
+            ))}
           </div>
+          <button className="po-process-arrow" onClick={goProcessNext}>›</button>
         </div>
       </section>
 
