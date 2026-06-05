@@ -32,11 +32,11 @@ const SectionHeader = ({ number, label, underlineColor }) => (
 
 /* ─── PROCESS STEPS DATA ──────────────────────────────── */
 const steps = [
-  { dot: '#F65A89', name: 'EMPATHIZE', desc: '6 user interviews revealed collectors have no single place to discover, buy, and track art.',           num: '01', color: '#F65A89' },
-  { dot: '#FF6634', name: 'DEFINE',    desc: 'POV: art buyers need a unified discovery + purchase experience, not 3 separate apps.',                  num: '02', color: '#FF6634' },
-  { dot: '#FFC548', name: 'IDEATE',    desc: 'Chose live bidding as the differentiator — no competitor had it on mobile.',                            num: '03', color: '#FFC548' },
+  { dot: '#42477E', name: 'EMPATHIZE', desc: '6 user interviews revealed collectors have no single place to discover, buy, and track art.',           num: '01', color: '#42477E' },
+  { dot: '#F65A89', name: 'DEFINE',    desc: 'POV: art buyers need a unified discovery + purchase experience, not 3 separate apps.',                  num: '02', color: '#F65A89' },
+  { dot: '#FF6634', name: 'IDEATE',    desc: 'Chose live bidding as the differentiator — no competitor had it on mobile.',                            num: '03', color: '#FF6634' },
   { dot: '#44C9E8', name: 'PROTOTYPE', desc: 'Dark navy system chosen for gallery feel — contrast tested to WCAG AA.',                                num: '04', color: '#44C9E8' },
-  { dot: '#42477E', name: 'TEST',      desc: '13 participants. Iterated nav labels after 8/13 missed the bidding tab on first pass.',                  num: '05', color: '#42477E' },
+  { dot: '#FFC548', name: 'TEST',      desc: '13 participants. Iterated nav labels after 8/13 missed the bidding tab on first pass.',                  num: '05', color: '#FFC548' },
 ];
 
 /* ─── SCREEN IMAGES ───────────────────────────────────── */
@@ -108,19 +108,19 @@ function ProjectOverview() {
 
       {/* ── Meta Grid ── */}
       <div className="po-meta-grid">
-        <div className="po-meta-box" style={{ border: '1px solid #F65A89' }}>
+        <div className="po-meta-box" style={{ border: '1px solid #42477E' }}>
           <div className="po-meta-label">ROLE</div>
           <div className="po-meta-value">UI/UX Designer</div>
         </div>
-        <div className="po-meta-box" style={{ border: '1px solid #FFC548' }}>
+        <div className="po-meta-box" style={{ border: '1px solid #F65A89' }}>
           <div className="po-meta-label">TIMELINE</div>
           <div className="po-meta-value">4 Weeks</div>
         </div>
-        <div className="po-meta-box" style={{ border: '1px solid #44C9E8' }}>
+        <div className="po-meta-box" style={{ border: '1px solid #FF6634' }}>
           <div className="po-meta-label">TOOL</div>
           <div className="po-meta-value">Figma</div>
         </div>
-        <div className="po-meta-box" style={{ border: '1px solid #FF6634' }}>
+        <div className="po-meta-box" style={{ border: '1px solid #44C9E8' }}>
           <div className="po-meta-label">PLATFORM</div>
           <div className="po-meta-value">Mobile App</div>
         </div>
@@ -142,7 +142,7 @@ function ProjectOverview() {
 
       {/* ── Section 01 — Overview ── */}
       <section className="po-section">
-        <SectionHeader number="01" label="OVERVIEW" color="#F65A89" underlineColor="#F65A89" />
+        <SectionHeader number="01" label="OVERVIEW" color="#42477E" underlineColor="#42477E" />
         <p className="po-body-text">
           Atria is an art gallery mobile app combining exhibition ticketing, an art marketplace
           with live bidding, and a social layer for artists and collectors.
@@ -151,7 +151,7 @@ function ProjectOverview() {
 
       {/* ── Section 02 — The Problem ── */}
       <section className="po-section">
-        <SectionHeader number="02" label="THE PROBLEM" color="#FF6634" underlineColor="#FF6634" />
+        <SectionHeader number="02" label="THE PROBLEM" color="#F65A89" underlineColor="#F65A89" />
         <p className="po-body-text">
           Art discovery is fragmented — galleries, auctions, and artist profiles live on separate
           platforms. There is no single space that connects discovery, purchase, and community.
@@ -160,7 +160,7 @@ function ProjectOverview() {
 
       {/* ── Section 03 — Process ── */}
       <section className="po-section">
-        <SectionHeader number="03" label="PROCESS" color="#44C9E8" underlineColor="#44C9E8" />
+        <SectionHeader number="03" label="PROCESS" color="#FF6634" underlineColor="#FF6634" />
         <div className="po-process-steps">
           {steps.map((s) => (
             <div className="po-step-row" key={s.num}>
@@ -180,7 +180,7 @@ function ProjectOverview() {
       {/* ── Section 04 — Screens ── */}
       <section className="po-section-screens">
         <div style={{ paddingRight: 0 }}>
-          <SectionHeader number="04" label="SCREENS" color="#FFC548" underlineColor="#FFC548" />
+          <SectionHeader number="04" label="SCREENS" color="#44C9E8" underlineColor="#44C9E8" />
         </div>
         <div
           className="po-screens-scroll"
@@ -205,7 +205,7 @@ function ProjectOverview() {
 
       {/* ── Section 05 — Outcome ── */}
       <section className="po-section">
-        <SectionHeader number="05" label="OUTCOME" color="#42477E" underlineColor="#42477E" />
+        <SectionHeader number="05" label="OUTCOME" color="#FFC548" underlineColor="#FFC548" />
         <div className="po-outcome-box">
           <p className="po-body-text" style={{ marginTop: 0 }}>
             Full hi-fi shipped across 8 screens. 85% usability success rate. Navigation iterated 2× based on test findings.

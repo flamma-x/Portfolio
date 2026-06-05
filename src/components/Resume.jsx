@@ -1,26 +1,37 @@
 import { useNavigate } from 'react-router-dom';
 import Footer from './Footer';
 import './Resume.css';
+import advancedPythonCert from '../assets/AdvancedProgrammingTechnique-Tarek.Daher..pdf';
+import webAppsCert from '../assets/BuildingWebApplicationsWith-Tarek.Daher..pdf';
 
 const experience = [
-  { role: 'Production Coordinator', company: 'Freelance – TV & Media Projects', location: 'Istanbul', period: 'Jun 2025 – Mar 2026', color: '#F65A89', bullets: ['Coordinated production activities for TV series including "Jinn Wedding" and "Ginayet Hobb"', 'Managed on-ground logistics, schedules, and team communication', 'Ensured smooth execution under tight deadlines'] },
-  { role: 'Operations Manager', company: 'KCC Contracting Company', location: 'Khobar', period: 'Aug 2022 – Jan 2024', color: '#FF6634', bullets: ['Oversaw daily operations and project workflows across multiple sites', 'Improved efficiency and coordination between departments', 'Managed resources, timelines, and team performance'] },
-  { role: 'Web3 Marketing Manager', company: 'Arab Alpha', location: 'Dubai', period: 'Apr 2020 – Jul 2022', color: '#FFC548', bullets: ['Led digital marketing strategies in the Web3/crypto space', 'Managed campaigns, community growth, and brand positioning', 'Worked closely with product and tech teams'] },
+  { role: 'Production Coordinator', company: 'Freelance – TV & Media Projects', location: 'Istanbul', period: 'Jun 2025 – Mar 2026', color: '#42477E', bullets: ['Coordinated production activities for TV series including "Jinn Wedding" and "Ginayet Hobb"', 'Managed on-ground logistics, schedules, and team communication', 'Ensured smooth execution under tight deadlines'] },
+  { role: 'Operations Manager', company: 'KCC Contracting Company', location: 'Khobar', period: 'Aug 2022 – Jan 2024', color: '#F65A89', bullets: ['Oversaw daily operations and project workflows across multiple sites', 'Improved efficiency and coordination between departments', 'Managed resources, timelines, and team performance'] },
+  { role: 'Web3 Marketing Manager', company: 'Arab Alpha', location: 'Dubai', period: 'Apr 2020 – Jul 2022', color: '#FF6634', bullets: ['Led digital marketing strategies in the Web3/crypto space', 'Managed campaigns, community growth, and brand positioning', 'Worked closely with product and tech teams'] },
   { role: 'Marketing Manager', company: 'V Energy Drink', location: 'Beirut', period: 'Feb 2017 – Mar 2020', color: '#44C9E8', bullets: ['Developed and executed marketing campaigns', 'Increased brand awareness and market presence', 'Managed promotions, events, and partnerships'] },
-  { role: 'Business Owner', company: 'Import & Trading Business', location: 'Kinshasa', period: '2012 – 2017', color: '#42477E', bullets: ['Founded and managed a retail shop and warehouse', 'Imported and sold tires, batteries, motorcycles, and tools', 'Handled operations, sales, and supplier relationships'] },
-  { role: 'Production & Sales Associate', company: 'KTF', location: 'Lubumbashi', period: '2010 – 2012', color: '#F65A89', bullets: ['Worked in production and sales of tile adhesive products', 'Assisted in operations and distribution processes'] },
+  { role: 'Business Owner', company: 'Import & Trading Business', location: 'Kinshasa', period: '2012 – 2017', color: '#FFC548', bullets: ['Founded and managed a retail shop and warehouse', 'Imported and sold tires, batteries, motorcycles, and tools', 'Handled operations, sales, and supplier relationships'] },
+  { role: 'Production & Sales Associate', company: 'KTF', location: 'Lubumbashi', period: '2010 – 2012', color: '#42477E', bullets: ['Worked in production and sales of tile adhesive products', 'Assisted in operations and distribution processes'] },
 ];
 
 const education = [
-  { degree: 'Bachelor\'s in Business Administration', school: 'AUL', location: 'Beirut' },
-  { degree: 'Web Development', school: 'Horizon', location: 'Online' },
-  { degree: 'Computer Programming', school: 'Horizon', location: 'Online' },
-  { degree: 'UX Design', school: 'Google', location: 'Beirut' },
+  { degree: 'Bachelor\'s in Business Administration', school: 'AUL', location: 'Beirut', color: '#42477E' },
+  { degree: 'Web Development', school: 'Horizon', location: 'Online', color: '#F65A89' },
+  { degree: 'Computer Programming', school: 'Horizon', location: 'Online', color: '#FF6634' },
+  { degree: 'UX Design', school: 'Google', location: 'Beirut', color: '#44C9E8' },
 ];
 
 const skills = ['UX Design', 'UI Design', 'Figma', 'Python', 'JavaScript', 'React', 'Project Management', 'Production Coordination', 'Operations Management', 'Logistics & Planning', 'Team Leadership', 'Problem Solving', 'Communication & Coordination'];
 
-const certifications = ['Build Wireframes and Low-Fidelity Prototypes', 'Conduct UX Research and Test Early Concepts', 'Foundations of User Experience (UX) Design', 'Start the UX Design Process: Empathize, Define, and Ideate', 'Building Web Applications With TypeScript, Angular, and React', 'Advanced Programming Techniques with Python', 'Introduction to Programming with Python (v1.0)', 'Driver\'s License'];
+const certifications = [
+  { name: 'Foundations of User Experience (UX) Design', url: 'https://coursera.org/verify/FJS4BY42J8VV' },
+  { name: 'Start the UX Design Process: Empathize, Define, and Ideate', url: 'https://coursera.org/verify/3DAMCCKPX6HT' },
+  { name: 'Build Wireframes and Low-Fidelity Prototypes', url: 'https://coursera.org/verify/NFGI8BAWHLYP' },
+  { name: 'Conduct UX Research and Test Early Concepts', url: 'https://coursera.org/verify/JDZJD9P3CL58' },
+  { name: 'Create High-Fidelity Designs and Prototypes in Figma', url: 'https://coursera.org/verify/E6H8B1DJKQIT' },
+  { name: 'Building Web Applications With TypeScript, Angular, and React', url: webAppsCert },
+  { name: 'Advanced Programming Techniques with Python', url: advancedPythonCert },
+  { name: 'Introduction to Programming with Python (v1.0)', url: null },
+];
 
 function SectionHeader({ number, label, color }) {
   return (
@@ -70,26 +81,24 @@ function Resume() {
 
       {/* Summary */}
       <section className="rv-section">
-        <SectionHeader number="01" label="SUMMARY" color="#F65A89" />
+        <SectionHeader number="01" label="SUMMARY" color="#42477E" />
         <p className="rv-body">Operations and Production Coordinator turned UI/UX Designer. Extensive experience across logistics, marketing, contracting, and media production — now channeling that into building digital products that feel as good as they look.</p>
       </section>
 
       {/* Experience */}
       <section className="rv-section">
-        <SectionHeader number="02" label="EXPERIENCE" color="#FF6634" />
+        <SectionHeader number="02" label="EXPERIENCE" color="#F65A89" />
         <div className="rv-exp-list">
           {experience.map((e, i) => (
-            <div key={i} className="rv-exp-card" style={{ borderLeftColor: e.color }}>
-              <div className="rv-exp-top">
-                <div>
-                  <p className="rv-exp-role">{e.role}</p>
-                  <p className="rv-exp-company">{e.company} · {e.location}</p>
+            <div key={i} className="rv-step-row">
+              <div className="rv-step-left">
+                <div className="rv-step-dot" style={{ background: e.color }} />
+                <div className="rv-step-info">
+                  <p className="rv-step-name">{e.role}</p>
+                  <p className="rv-step-desc">{e.company} · {e.location} · {e.period}</p>
                 </div>
-                <span className="rv-exp-period" style={{ color: e.color }}>{e.period}</span>
               </div>
-              <ul className="rv-exp-bullets">
-                {e.bullets.map((b, j) => <li key={j}>{b}</li>)}
-              </ul>
+              <span className="rv-step-num" style={{ color: e.color }}>{String(i + 1).padStart(2, '0')}</span>
             </div>
           ))}
         </div>
@@ -97,10 +106,10 @@ function Resume() {
 
       {/* Education */}
       <section className="rv-section">
-        <SectionHeader number="03" label="EDUCATION" color="#FFC548" />
+        <SectionHeader number="03" label="EDUCATION" color="#FF6634" />
         <div className="rv-edu-grid">
           {education.map((e, i) => (
-            <div key={i} className="rv-edu-card">
+            <div key={i} className="rv-edu-card" style={{ border: `1px solid ${e.color}` }}>
               <p className="rv-edu-degree">{e.degree}</p>
               <p className="rv-edu-school">{e.school} · {e.location}</p>
             </div>
@@ -118,7 +127,7 @@ function Resume() {
 
       {/* Languages */}
       <section className="rv-section">
-        <SectionHeader number="05" label="LANGUAGES" color="#42477E" />
+        <SectionHeader number="05" label="LANGUAGES" color="#FFC548" />
         <div className="service-pills" style={{ marginTop: 14 }}>
           {['Arabic', 'English', 'French'].map(l => <span key={l} className="pill">{l} · Fluent</span>)}
         </div>
@@ -126,12 +135,16 @@ function Resume() {
 
       {/* Certifications */}
       <section className="rv-section">
-        <SectionHeader number="06" label="CERTIFICATIONS" color="#F65A89" />
+        <SectionHeader number="06" label="CERTIFICATIONS" color="#42477E" />
         <div className="rv-cert-list">
           {certifications.map((c, i) => (
             <div key={i} className="rv-cert-item">
-              <div className="rv-cert-dot" style={{ background: ['#F65A89','#FF6634','#FFC548','#44C9E8','#42477E','#F65A89','#FF6634','#FFC548'][i] }} />
-              <span>{c}</span>
+              <div className="rv-cert-dot" style={{ background: ['#42477E','#F65A89','#FF6634','#44C9E8','#FFC548','#42477E','#F65A89','#FF6634'][i] }} />
+              {c.url ? (
+                <a href={c.url} target="_blank" rel="noopener noreferrer" className="rv-cert-link">{c.name}</a>
+              ) : (
+                <span>{c.name}</span>
+              )}
             </div>
           ))}
         </div>

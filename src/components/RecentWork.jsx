@@ -4,7 +4,7 @@ import linkerImg from '../assets/Linker/Frame 8.png';
 
 function RecentWork() {
   return (
-    <section className="recent-work">
+    <section className="recent-work" style={{ marginTop: 25 }}>
       <div className="section-label-wrap">
         <span className="section-label">recent work</span>
         <div className="section-underline" style={{ width: 113, background: '#F65A89' }} />

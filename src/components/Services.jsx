@@ -17,7 +17,7 @@ function Services() {
     <section className="services">
       <div className="section-label-wrap">
         <span className="section-label">services</span>
-        <div className="section-underline" style={{ width: 80, background: '#F65A89' }} />
+        <div className="section-underline" style={{ width: 80, background: '#FF6634' }} />
       </div>
 
       <div className="service-cards">
