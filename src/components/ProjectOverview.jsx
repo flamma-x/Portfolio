@@ -50,8 +50,6 @@ function ProjectOverview() {
   const [lightboxIdx, setLightboxIdx] = useState(null);
   const [carouselIdx, setCarouselIdx] = useState(0);
   const [carouselDrag, setCarouselDrag] = useState(0);
-  const [carouselCardWidth, setCarouselCardWidth] = useState(0);
-  const carouselWrapRef = useRef(null);
   const carouselDragStart = useRef(0);
   const carouselDragging = useRef(false);
   const [processIdx, setProcessIdx] = useState(0);
@@ -64,7 +62,6 @@ function ProjectOverview() {
   useEffect(() => {
     const measure = () => {
       if (processWrapRef.current) setProcessCardWidth(processWrapRef.current.offsetWidth);
-      if (carouselWrapRef.current) setCarouselCardWidth(carouselWrapRef.current.offsetWidth);
     };
     measure();
     window.addEventListener('resize', measure);
@@ -188,7 +185,6 @@ function ProjectOverview() {
 
       {/* ── Carousel ── */}
       <div
-        ref={carouselWrapRef}
         className="po-carousel"
         onTouchStart={onCarouselTouchStart}
         onTouchMove={onCarouselTouchMove}
@@ -197,12 +193,12 @@ function ProjectOverview() {
         <div
           className="po-carousel-track"
           style={{
-            transform: `translateX(${-(carouselIdx * carouselCardWidth) + carouselDrag}px)`,
+            transform: `translateX(calc(${-carouselIdx * 100}% + ${carouselDrag}px))`,
             transition: carouselDragging.current ? 'none' : 'transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)',
           }}
         >
           {carouselImages.map((img, i) => (
-            <img key={i} src={img} alt={`Atria screen ${i + 1}`} className="po-carousel-img" style={{ width: carouselCardWidth || '100%' }} />
+            <img key={i} src={img} alt={`Atria screen ${i + 1}`} className="po-carousel-img" />
           ))}
         </div>
       </div>

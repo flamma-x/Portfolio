@@ -111,10 +111,10 @@
 }
 
 .po-carousel-img {
+  width: 100%;
   flex-shrink: 0;
-  object-fit: cover;
   display: block;
-  height: 220px;
+  height: auto;
 }
 
 .po-carousel-nav {
@@ -298,8 +298,7 @@
 /* ─── PROCESS CAROUSEL ────────────────────────────────── */
 .po-process-track-wrap {
   overflow: hidden;
-  margin: 14px -23px 0;
-  width: calc(100% + 46px);
+  margin-top: 14px;
   touch-action: pan-y;
 }
 
