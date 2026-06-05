@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import RecentWork from './components/RecentWork';
 import Services from './components/Services';
+import MyStory from './components/MyStory';
 import AllProjects from './components/AllProjects';
 import Footer from './components/Footer';
 import ProjectOverview from './components/ProjectOverview';
@@ -17,6 +18,7 @@ function HomePage() {
       <Navbar className="mobile-only-nav" />
       <Hero />
       <RecentWork />
+      <MyStory />
       <Services />
       <AllProjects />
       <Footer />

@@ -1,0 +1,86 @@
+.my-story {
+  margin-top: 40px;
+  padding: 0 25px;
+}
+
+.ms-cards {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ms-card {
+  background: #fafafa;
+  border: 1px solid;
+  border-radius: 10px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  min-height: 150px;
+}
+
+.ms-reverse {
+  flex-direction: row-reverse;
+}
+
+.ms-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ms-title {
+  font-family: 'Jersey 25', serif;
+  font-size: 24px;
+  line-height: 1;
+  margin: 0;
+}
+
+.ms-body {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  color: #555555;
+  line-height: 1.37;
+  margin: 0;
+}
+
+.ms-avatar-wrap {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  flex-shrink: 0;
+}
+
+.ms-avatar-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.ms-avatar {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+@media (min-width: 768px) {
+  .my-story {
+    padding: 0 60px;
+    margin-top: 60px;
+  }
+
+  .ms-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
